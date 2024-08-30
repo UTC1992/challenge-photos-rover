@@ -1,0 +1,9 @@
+*.css
+*.svg
+*.jpeg
+*.jpg
+*.png
+/config
+/dist
+*.js
+node_modules
