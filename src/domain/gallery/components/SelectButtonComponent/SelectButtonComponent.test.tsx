@@ -1,11 +1,11 @@
 import '@testing-library/jest-dom'
 import { render, screen } from '@testing-library/react'
-import SelectButton from './SelectButton'
+import SelectButtonComponent from './SelectButtonComponent'
 
 describe('SelectButton', () => {
   it('should render the button', () => {
     // Arrange
-    render(<SelectButton title="Select Option" />)
+    render(<SelectButtonComponent title="Select Option" />)
 
     // Act
     const button = screen.getByText('Select Option')
