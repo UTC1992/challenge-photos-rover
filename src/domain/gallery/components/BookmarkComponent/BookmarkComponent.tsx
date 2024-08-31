@@ -1,6 +1,7 @@
 'use client'
 
 import { ReactNode } from 'react'
+
 import { BookmarkStyled } from './styles'
 
 interface IBookmarkComponentProps {

@@ -1,8 +1,8 @@
 'use client'
 
-import { ReactNode } from 'react'
-import { SelectButtonStyled } from './styles'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
+
+import { SelectButtonStyled } from './styles'
 
 interface ISelectButtonComponentProps {
   title: string
@@ -13,7 +13,8 @@ const SelectButtonComponent: React.FC<ISelectButtonComponentProps> = ({
 }) => {
   return (
     <SelectButtonStyled>
-      {title} <ExpandMoreIcon />
+      {title}
+      <ExpandMoreIcon />
     </SelectButtonStyled>
   )
 }

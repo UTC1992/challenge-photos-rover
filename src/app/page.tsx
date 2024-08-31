@@ -1,16 +1,31 @@
+import BookmarkIcon from '@mui/icons-material/Bookmark'
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder'
+
+import { Stack } from '@mui/material'
+
 import BookmarkComponent from '@/domain/gallery/components/BookmarkComponent/BookmarkComponent'
+import IconButtonComponent from '@/domain/gallery/components/IconButtonComponent/IconButtonComponent'
+import ImageComponent from '@/domain/gallery/components/ImageComponent/ImageComponent'
 import SelectButtonComponent from '@/domain/gallery/components/SelectButtonComponent/SelectButtonComponent'
 import TitleComponent from '@/domain/gallery/components/TitleComponent/TitleComponent'
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder'
-import IconButtonComponent from '@/domain/gallery/components/IconButtonComponent/IconButtonComponent'
-import BookmarkIcon from '@mui/icons-material/Bookmark'
-import ImageComponent from '@/domain/gallery/components/ImageComponent/ImageComponent'
 
-export default function Home() {
+const Home: React.FC = () => {
   return (
     <main>
-      <TitleComponent title="Galería Mars Rover" />
-      <SelectButtonComponent title="Elija una opción" />
+      <Stack>
+        <TitleComponent title="Galería Mars Rover" />
+      </Stack>
+      <Stack
+        direction="row"
+        columnGap={2}
+        width="100%"
+        alignItems="center"
+        justifyContent="center"
+      >
+        <SelectButtonComponent title="Elija una opción" />
+        <SelectButtonComponent title="Elija una opción" />
+        <SelectButtonComponent title="Elija una opción" />
+      </Stack>
       <BookmarkComponent
         title="Camera, Date Sun"
         icon={<FavoriteBorderIcon />}
@@ -23,3 +38,5 @@ export default function Home() {
     </main>
   )
 }
+
+export default Home

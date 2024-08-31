@@ -1,7 +1,8 @@
 import '@testing-library/jest-dom'
-import { render, screen } from '@testing-library/react'
-import IconButtonComponent from './IconButtonComponent'
 import BookmarkIcon from '@mui/icons-material/Bookmark'
+import { render, screen } from '@testing-library/react'
+
+import IconButtonComponent from './IconButtonComponent'
 
 describe('IconButtonComponent', () => {
   it('should render button and icon', () => {
