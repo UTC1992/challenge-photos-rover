@@ -4,11 +4,11 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder'
 import HighlightOffRoundedIcon from '@mui/icons-material/HighlightOffRounded'
 import { Stack } from '@mui/material'
 
-import BookmarkComponent from '@/domain/gallery/components/BookmarkComponent/BookmarkComponent'
-import IconButtonComponent from '@/domain/gallery/components/IconButtonComponent/IconButtonComponent'
-import ImageComponent from '@/domain/gallery/components/ImageComponent/ImageComponent'
-import SelectButtonComponent from '@/domain/gallery/components/SelectButtonComponent/SelectButtonComponent'
-import TitleComponent from '@/domain/gallery/components/TitleComponent/TitleComponent'
+import BookmarkComponent from '@/modules/gallery/components/BookmarkComponent/BookmarkComponent'
+import IconButtonComponent from '@/modules/gallery/components/IconButtonComponent/IconButtonComponent'
+import ImageComponent from '@/modules/gallery/components/ImageComponent/ImageComponent'
+import SelectButtonComponent from '@/modules/gallery/components/SelectButtonComponent/SelectButtonComponent'
+import TitleComponent from '@/modules/gallery/components/TitleComponent/TitleComponent'
 
 const Home: React.FC = () => {
   return (
