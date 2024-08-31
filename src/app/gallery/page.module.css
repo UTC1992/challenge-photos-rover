@@ -1,0 +1,47 @@
+.page {
+  display: grid;
+  grid-template-columns: 0.5fr auto 0.5fr;
+  grid-template-rows: auto auto 1fr auto;
+  grid-template-areas: 
+    ". header ."
+    ". filter ."
+    ". bookmarks ."
+    ". main ."
+    ". footer .";
+  gap: 1rem;
+  padding: 10px;
+}
+
+.page__header {
+  grid-area: header;
+  border: 1px solid black;
+}
+
+.page__filter {
+  grid-area: filter;
+  border: 1px solid black;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding: 1rem;
+}
+
+.page__bookmarks {
+  grid-area: bookmarks;
+  border: 1px solid black;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.page__main {
+  grid-area: main;
+  border: 1px solid black;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+  padding: 1rem;
+}
