@@ -2,18 +2,19 @@ import BookmarkComponent from '@/domain/gallery/components/BookmarkComponent/Boo
 import SelectButtonComponent from '@/domain/gallery/components/SelectButtonComponent/SelectButtonComponent'
 import TitleComponent from '@/domain/gallery/components/TitleComponent/TitleComponent'
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder'
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
+import IconButtonComponent from '@/domain/gallery/components/IconButtonComponent/IconButtonComponent'
+import BookmarkIcon from '@mui/icons-material/Bookmark'
 
 export default function Home() {
   return (
     <main>
       <TitleComponent title="Galería Mars Rover" />
       <SelectButtonComponent title="Elija una opción" />
-
       <BookmarkComponent
         title="Camera, Date Sun"
         icon={<FavoriteBorderIcon />}
       />
+      <IconButtonComponent icon={<BookmarkIcon />} />
     </main>
   )
 }
