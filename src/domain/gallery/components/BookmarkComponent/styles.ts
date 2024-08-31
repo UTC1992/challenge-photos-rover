@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
-export const SelectButtonStyled = styled('button')`
-  background-color: #6d6f6d;
+export const BookmarkStyled = styled('button')`
+  background-color: #e0e5e0;
   border: none;
   border-radius: 10px;
   display: flex;
@@ -10,10 +10,9 @@ export const SelectButtonStyled = styled('button')`
   column-gap: 1rem;
   padding: 0.5rem 1rem;
   font-size: 1rem;
-  color: #fff;
 
   &:hover {
-    background-color: #b6b8b6;
+    background-color: #d4d5d4;
     cursor: pointer;
   }
 `
