@@ -128,7 +128,7 @@ const dummyBookmarks = [
 
 const Home: React.FC = () => {
   const isMobile = useMediaQuery('(max-width: 600px)')
-  const containerRef = useRef<HTMLDivElement>()
+  const containerRef = useRef<HTMLDivElement | undefined>()
   const [scrollPosition, setScrollPosition] = useState(0)
 
   const handleScroll = (scrollAmount: number): void => {
@@ -136,7 +136,9 @@ const Home: React.FC = () => {
 
     setScrollPosition(newScrollPosition)
 
-    containerRef.current.scrollLeft = newScrollPosition
+    if (containerRef.current) {
+      containerRef.current.scrollLeft = newScrollPosition
+    }
   }
 
   return (
@@ -170,7 +172,7 @@ const Home: React.FC = () => {
             maxWidth: { xs: '340px', sm: '768px', md: '800px', lg: '1200px' },
           }}
         >
-          <div ref={containerRef} className={styles['page__horizontal-list']}>
+          <Box ref={containerRef} className={styles['page__horizontal-list']}>
             {dummyBookmarks.map((bookmark) => (
               <div
                 key={'bookmark-' + bookmark.id}
@@ -182,10 +184,10 @@ const Home: React.FC = () => {
                 />
               </div>
             ))}
-          </div>
+          </Box>
         </Box>
-        <button onClick={() => handleScroll(-200)}>left</button>
-        <button onClick={() => handleScroll(200)}>right</button>
+        <button onClick={() => handleScroll(-500)}>left</button>
+        <button onClick={() => handleScroll(500)}>right</button>
       </div>
 
       <div className={styles.page__main}>
