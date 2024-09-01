@@ -6,9 +6,7 @@ export const IconButtonStyled = styled('button')`
   justify-content: center;
   align-items: center;
   border-radius: 50%;
-  height: 2rem;
-  width: 2rem;
-  padding: 1.2rem;
+  padding: 0.5rem;
   background-color: transparent;
 
   &:hover {

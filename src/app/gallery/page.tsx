@@ -4,7 +4,7 @@ import BookmarkIcon from '@mui/icons-material/Bookmark'
 import CancelRoundedIcon from '@mui/icons-material/CancelRounded'
 
 import HighlightOffRoundedIcon from '@mui/icons-material/HighlightOffRounded'
-import { Stack, useMediaQuery } from '@mui/material'
+import { Box, Stack, Tab, Tabs, useMediaQuery } from '@mui/material'
 
 import BookmarkComponent from '@/modules/gallery/components/BookmarkComponent/BookmarkComponent'
 import IconButtonComponent from '@/modules/gallery/components/IconButtonComponent/IconButtonComponent'
@@ -69,6 +69,61 @@ const dummyImages = [
   },
 ]
 
+const dummyBookmarks = [
+  {
+    id: 1,
+    title: 'Camera, Date Sun',
+  },
+  {
+    id: 2,
+    title: 'Camera, Date Sun',
+  },
+  {
+    id: 3,
+    title: 'Camera, Date Sun',
+  },
+  {
+    id: 4,
+    title: 'Camera, Date Sun',
+  },
+  {
+    id: 5,
+    title: 'Camera, Date Sun',
+  },
+  {
+    id: 6,
+    title: 'Camera, Date Sun',
+  },
+  {
+    id: 7,
+    title: 'Camera, Date Sun',
+  },
+  {
+    id: 8,
+    title: 'Camera, Date Sun',
+  },
+  {
+    id: 9,
+    title: 'Camera, Date Sun',
+  },
+  {
+    id: 10,
+    title: 'Camera, Date Sun',
+  },
+  {
+    id: 11,
+    title: 'Camera, Date Sun',
+  },
+  {
+    id: 12,
+    title: 'Camera, Date Sun',
+  },
+  {
+    id: 13,
+    title: 'Camera, Date Sun',
+  },
+]
+
 const Home: React.FC = () => {
   const isMobile = useMediaQuery('(max-width: 600px)')
 
@@ -98,22 +153,29 @@ const Home: React.FC = () => {
         </Stack>
       </div>
       <div className={styles.page__bookmarks}>
-        <BookmarkComponent
-          title="Camera, Date Sun"
-          icon={<CancelRoundedIcon />}
-        />
-        <BookmarkComponent
-          title="Camera, Date Sun"
-          icon={<CancelRoundedIcon />}
-        />
-        <BookmarkComponent
-          title="Camera, Date Sun"
-          icon={<CancelRoundedIcon />}
-        />
-        <BookmarkComponent
-          title="Camera, Date Sun"
-          icon={<CancelRoundedIcon />}
-        />
+        <Box
+          sx={{
+            maxWidth: { xs: '340px', sm: '768px', md: '800px', lg: '1200px' },
+          }}
+        >
+          <Tabs
+            variant="scrollable"
+            scrollButtons="auto"
+            allowScrollButtonsMobile
+          >
+            {dummyBookmarks.map((bookmark) => (
+              <Tab
+                key={'bookmark-' + bookmark.id}
+                label={
+                  <BookmarkComponent
+                    title={bookmark.title}
+                    icon={<CancelRoundedIcon />}
+                  />
+                }
+              />
+            ))}
+          </Tabs>
+        </Box>
       </div>
 
       <div className={styles.page__main}>

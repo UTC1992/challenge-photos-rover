@@ -28,10 +28,6 @@
 .page__bookmarks {
   grid-area: bookmarks;
   border: 1px solid black;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  gap: 1rem;
 }
 
 .page__main {
@@ -40,4 +36,14 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+}
+
+.ul {
+  display: flex;
+  list-style: none;
+  height: 45px;
+  overflow-x: scroll;
+  padding: 20px 0;
+  flex: 0 0 800px;
+  margin: 0 auto;
 }
