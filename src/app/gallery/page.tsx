@@ -4,7 +4,7 @@ import BookmarkIcon from '@mui/icons-material/Bookmark'
 import CancelRoundedIcon from '@mui/icons-material/CancelRounded'
 
 import HighlightOffRoundedIcon from '@mui/icons-material/HighlightOffRounded'
-import { Box, Stack, Tab, Tabs, useMediaQuery } from '@mui/material'
+import { Box, Stack, useMediaQuery } from '@mui/material'
 
 import BookmarkComponent from '@/modules/gallery/components/BookmarkComponent/BookmarkComponent'
 import IconButtonComponent from '@/modules/gallery/components/IconButtonComponent/IconButtonComponent'
@@ -158,23 +158,19 @@ const Home: React.FC = () => {
             maxWidth: { xs: '340px', sm: '768px', md: '800px', lg: '1200px' },
           }}
         >
-          <Tabs
-            variant="scrollable"
-            scrollButtons="auto"
-            allowScrollButtonsMobile
-          >
+          <div className={styles['page__horizontal-list']}>
             {dummyBookmarks.map((bookmark) => (
-              <Tab
+              <div
                 key={'bookmark-' + bookmark.id}
-                label={
-                  <BookmarkComponent
-                    title={bookmark.title}
-                    icon={<CancelRoundedIcon />}
-                  />
-                }
-              />
+                className={styles['horizontal-list__bookmark']}
+              >
+                <BookmarkComponent
+                  title={bookmark.title}
+                  icon={<CancelRoundedIcon />}
+                />
+              </div>
             ))}
-          </Tabs>
+          </div>
         </Box>
       </div>
 

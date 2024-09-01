@@ -2,7 +2,7 @@
 
 import { ReactNode } from 'react'
 
-import { BookmarkStyled } from './styles'
+import styles from './BookmarkComponent.module.css'
 
 interface IBookmarkComponentProps {
   title: string
@@ -14,10 +14,10 @@ const BookmarkComponent: React.FC<IBookmarkComponentProps> = ({
   icon,
 }) => {
   return (
-    <BookmarkStyled>
+    <button className={styles.bookmark}>
       {title}
       {icon}
-    </BookmarkStyled>
+    </button>
   )
 }
 

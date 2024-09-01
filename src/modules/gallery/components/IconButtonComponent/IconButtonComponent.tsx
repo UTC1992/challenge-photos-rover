@@ -2,14 +2,14 @@
 
 import { ReactNode } from 'react'
 
-import { IconButtonStyled } from './stylest'
+import styles from './IconButtonComponent.module.css'
 
 interface IIconButtonComponentProps {
   icon: ReactNode
 }
 
 const IconButtonComponent: React.FC<IIconButtonComponentProps> = ({ icon }) => {
-  return <IconButtonStyled>{icon}</IconButtonStyled>
+  return <button className={styles['icon-button']}>{icon}</button>
 }
 
 export default IconButtonComponent

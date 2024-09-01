@@ -2,7 +2,7 @@
 
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 
-import { SelectButtonStyled } from './styles'
+import styles from './SelectButtonComponent.module.css'
 
 interface ISelectButtonComponentProps {
   title: string
@@ -12,10 +12,10 @@ const SelectButtonComponent: React.FC<ISelectButtonComponentProps> = ({
   title,
 }) => {
   return (
-    <SelectButtonStyled>
+    <button className={styles.button}>
       {title}
       <ExpandMoreIcon />
-    </SelectButtonStyled>
+    </button>
   )
 }
 

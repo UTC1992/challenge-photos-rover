@@ -38,12 +38,39 @@
   justify-content: center;
 }
 
-.ul {
+.page__horizontal-list {
   display: flex;
   list-style: none;
   height: 45px;
   overflow-x: scroll;
-  padding: 20px 0;
-  flex: 0 0 800px;
   margin: 0 auto;
+  align-items: center;
+}
+
+.page__horizontal-list::-webkit-scrollbar {
+  height: 5px;
+  width: 5px;
+  background: #fff3;
+  -webkit-border-radius: 1ex;
+}
+
+
+.page__horizontal-list::-webkit-scrollbar-thumb {
+  background: var(--accent);
+  -webkit-border-radius: 1ex;
+}
+
+.page__horizontal-list::-webkit-scrollbar-corner {
+  background: #fff3;
+}
+
+.horizontal-list__bookmark {
+  flex: 0 0 200px;
+  background: var(--accent);
+  margin: 0 20px 0 0;
+  border-radius: 10px;
+}
+
+.horizontal-list__bookmark:last-of-type {
+  margin: 0;
 }
