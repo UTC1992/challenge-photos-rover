@@ -2,11 +2,22 @@
 
 import BookmarkIcon from '@mui/icons-material/Bookmark'
 import CancelRoundedIcon from '@mui/icons-material/CancelRounded'
-
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
 import HighlightOffRoundedIcon from '@mui/icons-material/HighlightOffRounded'
-import { Box, IconButton, Stack, useMediaQuery } from '@mui/material'
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
+import {
+  Box,
+  IconButton,
+  List,
+  ListItem,
+  ListItemButton,
+  ListItemText,
+  Stack,
+  useMediaQuery,
+} from '@mui/material'
 
 import { useRef, useState } from 'react'
+import { DateCalendar } from '@mui/x-date-pickers/DateCalendar'
 
 import BookmarkComponent from '@/modules/gallery/components/BookmarkComponent/BookmarkComponent'
 import ImageComponent from '@/modules/gallery/components/ImageComponent/ImageComponent'
@@ -214,12 +225,62 @@ const Home: React.FC = () => {
         </Stack>
       </div>
 
-      <ModalComponent open>
-        <div>Front Hazard Avoidance Camera</div>
-        <div>Front Hazard Avoidance Camera</div>
-
-        <div>Front Hazard Avoidance Camera</div>
-        <div>Front Hazard Avoidance Camera</div>
+      <ModalComponent open={false}>
+        <List>
+          <ListItem>
+            <ListItemButton>
+              <ListItemText
+                sx={{ textAlign: 'center' }}
+                primary="Front Hazard Avoidance Camera"
+              />
+            </ListItemButton>
+          </ListItem>
+          <ListItem>
+            <ListItemButton>
+              <ListItemText primary="Front Hazard Avoidance Camera" />
+            </ListItemButton>
+          </ListItem>
+          <ListItem>
+            <ListItemButton>
+              <ListItemText primary="Front Hazard Avoidance Camera" />
+            </ListItemButton>
+          </ListItem>
+          <ListItem>
+            <ListItemButton>
+              <ListItemText primary="Front Hazard Avoidance Camera" />
+            </ListItemButton>
+          </ListItem>
+          <ListItem>
+            <ListItemButton>
+              <ListItemText primary="Front Hazard Avoidance Camera" />
+            </ListItemButton>
+          </ListItem>
+          <ListItem>
+            <ListItemButton>
+              <ListItemText primary="Front Hazard Avoidance Camera" />
+            </ListItemButton>
+          </ListItem>
+          <ListItem>
+            <ListItemButton>
+              <ListItemText primary="Front Hazard Avoidance Camera" />
+            </ListItemButton>
+          </ListItem>
+          <ListItem>
+            <ListItemButton>
+              <ListItemText primary="Front Hazard Avoidance Camera" />
+            </ListItemButton>
+          </ListItem>
+          <ListItem>
+            <ListItemButton>
+              <ListItemText primary="Front Hazard Avoidance Camera" />
+            </ListItemButton>
+          </ListItem>
+        </List>
+      </ModalComponent>
+      <ModalComponent open={false}>
+        <LocalizationProvider dateAdapter={AdapterDayjs}>
+          <DateCalendar />
+        </LocalizationProvider>
       </ModalComponent>
     </main>
   )
