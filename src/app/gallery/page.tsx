@@ -6,6 +6,8 @@ import CancelRoundedIcon from '@mui/icons-material/CancelRounded'
 import HighlightOffRoundedIcon from '@mui/icons-material/HighlightOffRounded'
 import { Box, Stack, useMediaQuery } from '@mui/material'
 
+import { useRef, useState } from 'react'
+
 import BookmarkComponent from '@/modules/gallery/components/BookmarkComponent/BookmarkComponent'
 import IconButtonComponent from '@/modules/gallery/components/IconButtonComponent/IconButtonComponent'
 import ImageComponent from '@/modules/gallery/components/ImageComponent/ImageComponent'
@@ -126,6 +128,16 @@ const dummyBookmarks = [
 
 const Home: React.FC = () => {
   const isMobile = useMediaQuery('(max-width: 600px)')
+  const containerRef = useRef<HTMLDivElement>()
+  const [scrollPosition, setScrollPosition] = useState(0)
+
+  const handleScroll = (scrollAmount: number): void => {
+    const newScrollPosition = scrollPosition + scrollAmount
+
+    setScrollPosition(newScrollPosition)
+
+    containerRef.current.scrollLeft = newScrollPosition
+  }
 
   return (
     <main className={styles.page}>
@@ -158,7 +170,7 @@ const Home: React.FC = () => {
             maxWidth: { xs: '340px', sm: '768px', md: '800px', lg: '1200px' },
           }}
         >
-          <div className={styles['page__horizontal-list']}>
+          <div ref={containerRef} className={styles['page__horizontal-list']}>
             {dummyBookmarks.map((bookmark) => (
               <div
                 key={'bookmark-' + bookmark.id}
@@ -172,6 +184,8 @@ const Home: React.FC = () => {
             ))}
           </div>
         </Box>
+        <button onClick={() => handleScroll(-200)}>left</button>
+        <button onClick={() => handleScroll(200)}>right</button>
       </div>
 
       <div className={styles.page__main}>

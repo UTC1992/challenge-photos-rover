@@ -13,13 +13,13 @@
 
 .page__header {
   grid-area: header;
-  border: 1px solid black;
+  /* border: 1px solid black; */
   padding-top: 1rem;
 }
 
 .page__filter {
   grid-area: filter;
-  border: 1px solid black;
+  /* border: 1px solid black; */
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -27,12 +27,12 @@
 
 .page__bookmarks {
   grid-area: bookmarks;
-  border: 1px solid black;
+  /* border: 1px solid black; */
 }
 
 .page__main {
   grid-area: main;
-  border: 1px solid black;
+  /* border: 1px solid black; */
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -41,32 +41,33 @@
 .page__horizontal-list {
   display: flex;
   list-style: none;
-  height: 45px;
+  height: 60px;
   overflow-x: scroll;
   margin: 0 auto;
   align-items: center;
+  scroll-behavior: smooth;
 }
 
-.page__horizontal-list::-webkit-scrollbar {
+/* .page__horizontal-list::-webkit-scrollbar {
   height: 5px;
   width: 5px;
-  background: #fff3;
+  background: rgba(171, 42, 42, 0.2);
   -webkit-border-radius: 1ex;
 }
 
 
 .page__horizontal-list::-webkit-scrollbar-thumb {
-  background: var(--accent);
+  background: rgba(171, 42, 42, 0.6);
   -webkit-border-radius: 1ex;
 }
 
 .page__horizontal-list::-webkit-scrollbar-corner {
-  background: #fff3;
-}
+  background: rgba(144, 9, 9, 0.881);
+} */
 
 .horizontal-list__bookmark {
   flex: 0 0 200px;
-  background: var(--accent);
+  background: 'red';
   margin: 0 20px 0 0;
   border-radius: 10px;
 }
