@@ -4,13 +4,13 @@ import BookmarkIcon from '@mui/icons-material/Bookmark'
 import CancelRoundedIcon from '@mui/icons-material/CancelRounded'
 
 import HighlightOffRoundedIcon from '@mui/icons-material/HighlightOffRounded'
-import { Box, Stack, useMediaQuery } from '@mui/material'
+import { Box, IconButton, Stack, useMediaQuery } from '@mui/material'
 
 import { useRef, useState } from 'react'
 
 import BookmarkComponent from '@/modules/gallery/components/BookmarkComponent/BookmarkComponent'
-import IconButtonComponent from '@/modules/gallery/components/IconButtonComponent/IconButtonComponent'
 import ImageComponent from '@/modules/gallery/components/ImageComponent/ImageComponent'
+import ModalComponent from '@/modules/gallery/components/ModalComponent/ModalComponent'
 import SelectButtonComponent from '@/modules/gallery/components/SelectButtonComponent/SelectButtonComponent'
 import TitleComponent from '@/modules/gallery/components/TitleComponent/TitleComponent'
 
@@ -159,8 +159,12 @@ const Home: React.FC = () => {
           flexWrap="wrap"
           rowGap={1}
         >
-          <IconButtonComponent icon={<BookmarkIcon />} />
-          <IconButtonComponent icon={<HighlightOffRoundedIcon />} />
+          <IconButton>
+            <BookmarkIcon />
+          </IconButton>
+          <IconButton>
+            <HighlightOffRoundedIcon />
+          </IconButton>
           <SelectButtonComponent title="Elija una opción" />
           <SelectButtonComponent title="Elija una opción" />
           <SelectButtonComponent title="Elija una opción" />
@@ -209,6 +213,14 @@ const Home: React.FC = () => {
           ))}
         </Stack>
       </div>
+
+      <ModalComponent open>
+        <div>Front Hazard Avoidance Camera</div>
+        <div>Front Hazard Avoidance Camera</div>
+
+        <div>Front Hazard Avoidance Camera</div>
+        <div>Front Hazard Avoidance Camera</div>
+      </ModalComponent>
     </main>
   )
 }
