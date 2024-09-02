@@ -24,6 +24,7 @@ import ImageComponent from '@/modules/gallery/components/ImageComponent/ImageCom
 import InputSolComponent from '@/modules/gallery/components/InputSolComponent/InputSolComponent'
 import ModalComponent from '@/modules/gallery/components/ModalComponent/ModalComponent'
 import SelectButtonComponent from '@/modules/gallery/components/SelectButtonComponent/SelectButtonComponent'
+import SelectCameraComponent from '@/modules/gallery/components/SelectCameraComponent/SelectCameraComponent'
 import TabMenuComponent from '@/modules/gallery/components/TabMenuComponent/TabMenuComponent'
 import TitleComponent from '@/modules/gallery/components/TitleComponent/TitleComponent'
 
@@ -178,7 +179,7 @@ const Home: React.FC = () => {
           <IconButton>
             <HighlightOffRoundedIcon />
           </IconButton>
-          <SelectButtonComponent title="Camera" />
+          <SelectCameraComponent />
           <InputSolComponent />
           <SelectButtonComponent title="Earth Day" />
         </Stack>

@@ -16,7 +16,7 @@ const ModalComponent: React.FC<IModalComponentProps> = ({
   children,
 }) => {
   return (
-    <DialogStyled open={open} fullWidth maxWidth="xs">
+    <DialogStyled open={open} fullWidth maxWidth="xs" onClose={onClose}>
       <IconContainerStyled>
         <IconButton onClick={onClose}>
           <CloseIcon />

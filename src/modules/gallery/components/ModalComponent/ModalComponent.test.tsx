@@ -30,7 +30,7 @@ describe('ModalComponent', () => {
     expect(modal).toHaveLength(0)
   })
 
-  it('should close modal when call onClose function', () => {
+  it('should call function when button is pressed', () => {
     // Arrange
     const open = true
     const onClose = jest.fn()
