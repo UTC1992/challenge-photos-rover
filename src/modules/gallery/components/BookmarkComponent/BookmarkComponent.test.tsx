@@ -18,10 +18,12 @@ describe('BookMarkComponent', () => {
   it('should call function when close button is clicked', () => {
     // Arrange
     const onClick = jest.fn()
+
     render(<BookmarkComponent title="Camera, Date" onDelete={onClick} />)
 
     // Act
     const icon = screen.getByTestId('CancelIcon')
+
     fireEvent.click(icon)
 
     // Assert

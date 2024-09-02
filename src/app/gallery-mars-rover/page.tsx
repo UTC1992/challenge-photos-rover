@@ -24,6 +24,7 @@ import ImageComponent from '@/modules/gallery/components/ImageComponent/ImageCom
 import InputSolComponent from '@/modules/gallery/components/InputSolComponent/InputSolComponent'
 import ModalComponent from '@/modules/gallery/components/ModalComponent/ModalComponent'
 import SelectButtonComponent from '@/modules/gallery/components/SelectButtonComponent/SelectButtonComponent'
+import TabMenuComponent from '@/modules/gallery/components/TabMenuComponent/TabMenuComponent'
 import TitleComponent from '@/modules/gallery/components/TitleComponent/TitleComponent'
 
 import styles from './page.module.css'
@@ -211,7 +212,10 @@ const Home: React.FC = () => {
       </div>
 
       <div className={styles.page__divider}>
-        <Divider sx={{ height: 1 }} />
+        <Divider />
+        <Stack width="100%" alignItems="center">
+          <TabMenuComponent />
+        </Stack>
       </div>
       <div className={styles.page__main}>
         <Stack
