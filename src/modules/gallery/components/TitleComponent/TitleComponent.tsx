@@ -1,9 +1,11 @@
+import { Typography } from '@mui/material'
+
 interface ITitleComponentProps {
   title: string
 }
 
 const TitleComponent: React.FC<ITitleComponentProps> = ({ title }) => {
-  return <h1>{title}</h1>
+  return <Typography variant="h3">{title}</Typography>
 }
 
 export default TitleComponent

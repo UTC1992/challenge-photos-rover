@@ -4,7 +4,7 @@ import { ReactNode } from 'react'
 
 import styles from './ModalComponent.module.css'
 
-import { DialogStyled } from './styledComponents'
+import { DialogStyled, IconContainerStyled } from './styledComponents'
 
 interface IModalComponentProps {
   open: boolean
@@ -19,11 +19,11 @@ const ModalComponent: React.FC<IModalComponentProps> = ({
 }) => {
   return (
     <DialogStyled open={open} fullWidth maxWidth="xs">
-      <div className={styles.icon}>
+      <IconContainerStyled>
         <IconButton onClick={onClose}>
           <CloseIcon />
         </IconButton>
-      </div>
+      </IconContainerStyled>
       <DialogContent>{children}</DialogContent>
     </DialogStyled>
   )

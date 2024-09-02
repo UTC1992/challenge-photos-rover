@@ -3,22 +3,18 @@
 import { ReactNode } from 'react'
 
 import styles from './BookmarkComponent.module.css'
+import { Chip } from '@mui/material'
 
 interface IBookmarkComponentProps {
   title: string
-  icon?: ReactNode
+  onDelete?: () => void
 }
 
 const BookmarkComponent: React.FC<IBookmarkComponentProps> = ({
   title,
-  icon,
+  onDelete,
 }) => {
-  return (
-    <button className={styles.bookmark}>
-      {title}
-      {icon}
-    </button>
-  )
+  return <Chip label={title} onDelete={onDelete} />
 }
 
 export default BookmarkComponent

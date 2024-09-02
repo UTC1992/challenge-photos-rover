@@ -1,12 +1,10 @@
 'use client'
 
 import BookmarkIcon from '@mui/icons-material/Bookmark'
-import CancelRoundedIcon from '@mui/icons-material/CancelRounded'
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
 import HighlightOffRoundedIcon from '@mui/icons-material/HighlightOffRounded'
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 import {
-  Box,
+  Divider,
+  Grid2,
   IconButton,
   List,
   ListItem,
@@ -15,18 +13,20 @@ import {
   Stack,
   useMediaQuery,
 } from '@mui/material'
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
+import { DateCalendar } from '@mui/x-date-pickers/DateCalendar'
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
 
 import { useRef, useState } from 'react'
-import { DateCalendar } from '@mui/x-date-pickers/DateCalendar'
 
 import BookmarkComponent from '@/modules/gallery/components/BookmarkComponent/BookmarkComponent'
 import ImageComponent from '@/modules/gallery/components/ImageComponent/ImageComponent'
+import InputSolComponent from '@/modules/gallery/components/InputSolComponent/InputSolComponent'
 import ModalComponent from '@/modules/gallery/components/ModalComponent/ModalComponent'
 import SelectButtonComponent from '@/modules/gallery/components/SelectButtonComponent/SelectButtonComponent'
 import TitleComponent from '@/modules/gallery/components/TitleComponent/TitleComponent'
 
 import styles from './page.module.css'
-import InputSolComponent from '@/modules/gallery/components/InputSolComponent/InputSolComponent'
 
 const dummyImages = [
   {
@@ -183,29 +183,36 @@ const Home: React.FC = () => {
         </Stack>
       </div>
       <div className={styles.page__bookmarks}>
-        <Box
-          sx={{
-            maxWidth: { xs: '340px', sm: '768px', md: '800px', lg: '1200px' },
-          }}
-        >
-          <Box ref={containerRef} className={styles['page__horizontal-list']}>
-            {dummyBookmarks.map((bookmark) => (
-              <div
-                key={'bookmark-' + bookmark.id}
-                className={styles['horizontal-list__bookmark']}
-              >
+        <Grid2 container columns={24}>
+          <Grid2 size={{ xs: 1, sm: 1, md: 2, lg: 3, xl: 6 }} />
+          <Grid2 size={{ xs: 22, sm: 22, md: 20, lg: 18, xl: 12 }}>
+            <Stack
+              direction="row"
+              columnGap={1}
+              sx={{
+                overflowX: 'scroll',
+                scrollbarWidth: 'none',
+              }}
+            >
+              {dummyBookmarks.map((bookmark) => (
                 <BookmarkComponent
+                  key={'bookmark-' + bookmark.id}
                   title={bookmark.title}
-                  icon={<CancelRoundedIcon />}
+                  // eslint-disable-next-line no-console
+                  onDelete={() => console.log('delete')}
                 />
-              </div>
-            ))}
-          </Box>
-        </Box>
-        <button onClick={() => handleScroll(-500)}>left</button>
-        <button onClick={() => handleScroll(500)}>right</button>
+              ))}
+            </Stack>
+          </Grid2>
+          <Grid2 size={{ xs: 1, sm: 1, md: 2, lg: 3, xl: 6 }} />
+        </Grid2>
+        {/* <button onClick={() => handleScroll(-500)}>left</button>
+        <button onClick={() => handleScroll(500)}>right</button> */}
       </div>
 
+      <div className={styles.page__divider}>
+        <Divider sx={{ height: 1 }} />
+      </div>
       <div className={styles.page__main}>
         <Stack
           display="grid"
