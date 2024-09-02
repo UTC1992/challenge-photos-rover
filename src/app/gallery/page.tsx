@@ -26,6 +26,7 @@ import SelectButtonComponent from '@/modules/gallery/components/SelectButtonComp
 import TitleComponent from '@/modules/gallery/components/TitleComponent/TitleComponent'
 
 import styles from './page.module.css'
+import InputSolComponent from '@/modules/gallery/components/InputSolComponent/InputSolComponent'
 
 const dummyImages = [
   {
@@ -177,7 +178,7 @@ const Home: React.FC = () => {
             <HighlightOffRoundedIcon />
           </IconButton>
           <SelectButtonComponent title="Elija una opción" />
-          <SelectButtonComponent title="Elija una opción" />
+          <InputSolComponent />
           <SelectButtonComponent title="Elija una opción" />
         </Stack>
       </div>
