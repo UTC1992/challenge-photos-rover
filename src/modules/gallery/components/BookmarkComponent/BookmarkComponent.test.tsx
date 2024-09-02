@@ -15,7 +15,7 @@ describe('BookMarkComponent', () => {
     expect(button).toBeInTheDocument()
   })
 
-  it('should call function when close button is clicked', () => {
+  it('should call function when close icon is clicked', () => {
     // Arrange
     const onClick = jest.fn()
 

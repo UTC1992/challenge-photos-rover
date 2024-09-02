@@ -178,9 +178,9 @@ const Home: React.FC = () => {
           <IconButton>
             <HighlightOffRoundedIcon />
           </IconButton>
-          <SelectButtonComponent title="Elija una opción" />
+          <SelectButtonComponent title="Camera" />
           <InputSolComponent />
-          <SelectButtonComponent title="Elija una opción" />
+          <SelectButtonComponent title="Earth Day" />
         </Stack>
       </div>
       <div className={styles.page__bookmarks}>

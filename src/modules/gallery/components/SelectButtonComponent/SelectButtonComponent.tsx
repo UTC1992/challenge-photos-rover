@@ -2,19 +2,19 @@
 
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 
-import styles from './SelectButtonComponent.module.css'
-import { Button } from '@mui/material'
 import { ButtonStyled } from './styledComponents'
 
 interface ISelectButtonComponentProps {
   title: string
+  onShow?: () => void
 }
 
 const SelectButtonComponent: React.FC<ISelectButtonComponentProps> = ({
   title,
+  onShow,
 }) => {
   return (
-    <ButtonStyled variant="contained">
+    <ButtonStyled variant="contained" onClick={onShow}>
       {title}
       <ExpandMoreIcon />
     </ButtonStyled>

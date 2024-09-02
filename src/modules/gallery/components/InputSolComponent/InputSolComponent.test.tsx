@@ -1,5 +1,6 @@
 import '@testing-library/jest-dom'
 import { fireEvent, render, screen } from '@testing-library/react'
+
 import InputSolComponent from './InputSolComponent'
 
 describe('InputSolComponent', () => {
@@ -20,6 +21,7 @@ describe('InputSolComponent', () => {
 
     // Act
     const inputInitial = screen.getByRole('textbox')
+
     fireEvent.change(inputInitial, { target: { value: '1000' } })
 
     // Assert

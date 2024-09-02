@@ -1,6 +1,7 @@
-import { InputAdornment } from '@mui/material'
-import { InputStyled } from './styledComponents'
 import WbSunnyIcon from '@mui/icons-material/WbSunny'
+import { InputAdornment } from '@mui/material'
+
+import { InputStyled } from './styledComponents'
 
 const InputSolComponent: React.FC = () => {
   return (

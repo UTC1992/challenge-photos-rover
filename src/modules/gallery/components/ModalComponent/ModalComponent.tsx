@@ -1,8 +1,6 @@
 import CloseIcon from '@mui/icons-material/Close'
-import { Dialog, DialogContent, IconButton } from '@mui/material'
+import { DialogContent, IconButton } from '@mui/material'
 import { ReactNode } from 'react'
-
-import styles from './ModalComponent.module.css'
 
 import { DialogStyled, IconContainerStyled } from './styledComponents'
 
