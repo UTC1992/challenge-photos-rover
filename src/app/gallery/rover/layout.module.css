@@ -8,7 +8,7 @@
     "bookmarks bookmarks bookmarks"
     ". divider ."
     ". main .";
-  gap: 1rem;
+  gap: 2rem;
 }
 
 .page__header {
