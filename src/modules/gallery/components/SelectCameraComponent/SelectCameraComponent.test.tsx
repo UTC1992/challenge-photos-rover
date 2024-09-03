@@ -3,6 +3,16 @@ import { fireEvent, render, screen, cleanup } from '@testing-library/react'
 
 import SelectCameraComponent from './SelectCameraComponent'
 
+export const camerasDummy = [
+  {
+    abbreviation: 'FHAZ',
+    camera: 'Front Hazard Avoidance Camera',
+  },
+  {
+    abbreviation: 'RHAZ',
+    camera: 'Rear Hazard Avoidance Camera',
+  },
+]
 describe('OptionsContainer', () => {
   afterEach(() => {
     cleanup()
@@ -56,17 +66,31 @@ describe('OptionsContainer', () => {
 
   it('should render list with items when modal is opened', () => {
     // Arrange
-    render(<SelectCameraComponent />)
+    render(<SelectCameraComponent options={camerasDummy} />)
 
     // Act
     const button = screen.getByRole('button')
 
     fireEvent.click(button) // open modal
     const list = screen.getByRole('list')
-    const items = screen.getAllByRole('listitem')
+    const itemsList = screen.getAllByRole('listitem')
 
     // Assert
     expect(list).toBeInTheDocument()
-    expect(items).toHaveLength(items.length)
+    expect(itemsList).toHaveLength(camerasDummy.length)
+  })
+
+  it('should render items that there were sent', () => {
+    // Arrange
+    render(<SelectCameraComponent options={camerasDummy} />)
+
+    // Act
+    const button = screen.getByRole('button')
+
+    fireEvent.click(button) // open modal
+    const itemsList = screen.getAllByRole('listitem')
+
+    // Assert
+    expect(itemsList).toHaveLength(2)
   })
 })

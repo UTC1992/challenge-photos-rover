@@ -4,7 +4,18 @@ import { useState } from 'react'
 import ModalComponent from '../ModalComponent/ModalComponent'
 import SelectButtonComponent from '../SelectButtonComponent/SelectButtonComponent'
 
-const SelectCameraComponent: React.FC = () => {
+interface ICamera {
+  abbreviation: string
+  camera: string
+}
+
+interface ISelectCameraComponentProps {
+  options?: ICamera[]
+}
+
+const SelectCameraComponent: React.FC<ISelectCameraComponentProps> = ({
+  options = [],
+}) => {
   const [open, setOpen] = useState(false)
 
   const onChangeOpen = (): void => {
@@ -15,16 +26,18 @@ const SelectCameraComponent: React.FC = () => {
     <>
       <SelectButtonComponent title="Camera" onShow={onChangeOpen} />
       {open && (
-        <ModalComponent open={open} onClose={onChangeOpen}>
+        <ModalComponent open={open} onClose={onChangeOpen} title="Cameras">
           <List>
-            <ListItem>
-              <ListItemButton>
-                <ListItemText
-                  sx={{ textAlign: 'center' }}
-                  primary="Front Hazard Avoidance Camera"
-                />
-              </ListItemButton>
-            </ListItem>
+            {options.map((item, index) => (
+              <ListItem key={`${item}-${index}`} disablePadding>
+                <ListItemButton>
+                  <ListItemText
+                    sx={{ textAlign: 'center' }}
+                    primary={item.camera}
+                  />
+                </ListItemButton>
+              </ListItem>
+            ))}
           </List>
         </ModalComponent>
       )}

@@ -17,8 +17,6 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 import { DateCalendar } from '@mui/x-date-pickers/DateCalendar'
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
 
-import { useRef, useState } from 'react'
-
 import BookmarkComponent from '@/modules/gallery/components/BookmarkComponent/BookmarkComponent'
 import ImageComponent from '@/modules/gallery/components/ImageComponent/ImageComponent'
 import InputSolComponent from '@/modules/gallery/components/InputSolComponent/InputSolComponent'
@@ -27,6 +25,8 @@ import SelectButtonComponent from '@/modules/gallery/components/SelectButtonComp
 import SelectCameraComponent from '@/modules/gallery/components/SelectCameraComponent/SelectCameraComponent'
 import TabMenuComponent from '@/modules/gallery/components/TabMenuComponent/TabMenuComponent'
 import TitleComponent from '@/modules/gallery/components/TitleComponent/TitleComponent'
+
+import { camerasList } from '@/modules/gallery/constants/camerasList'
 
 import styles from './page.module.css'
 
@@ -142,18 +142,18 @@ const dummyBookmarks = [
 
 const Home: React.FC = () => {
   const isMobile = useMediaQuery('(max-width: 600px)')
-  const containerRef = useRef<HTMLDivElement | undefined>()
-  const [scrollPosition, setScrollPosition] = useState(0)
+  // const containerRef = useRef<HTMLDivElement | undefined>()
+  // const [scrollPosition, setScrollPosition] = useState(0)
 
-  const handleScroll = (scrollAmount: number): void => {
-    const newScrollPosition = scrollPosition + scrollAmount
+  // const handleScroll = (scrollAmount: number): void => {
+  //   const newScrollPosition = scrollPosition + scrollAmount
 
-    setScrollPosition(newScrollPosition)
+  //   setScrollPosition(newScrollPosition)
 
-    if (containerRef.current) {
-      containerRef.current.scrollLeft = newScrollPosition
-    }
-  }
+  //   if (containerRef.current) {
+  //     containerRef.current.scrollLeft = newScrollPosition
+  //   }
+  // }
 
   return (
     <main className={styles.page}>
@@ -179,7 +179,7 @@ const Home: React.FC = () => {
           <IconButton>
             <HighlightOffRoundedIcon />
           </IconButton>
-          <SelectCameraComponent />
+          <SelectCameraComponent options={camerasList} />
           <InputSolComponent />
           <SelectButtonComponent title="Earth Day" />
         </Stack>

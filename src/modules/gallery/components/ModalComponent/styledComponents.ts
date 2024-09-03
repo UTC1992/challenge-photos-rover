@@ -1,4 +1,4 @@
-import { Box, Dialog, styled } from '@mui/material'
+import { Box, Dialog, DialogTitle, styled } from '@mui/material'
 
 export const DialogStyled = styled(Dialog)(() => ({
   '& .MuiPaper-root': {
@@ -6,7 +6,16 @@ export const DialogStyled = styled(Dialog)(() => ({
   },
 }))
 
-export const IconContainerStyled = styled(Box)(() => ({
+export const BoxTitleStyled = styled(DialogTitle)(() => ({
   display: 'flex',
-  justifyContent: 'flex-end',
+  justifyContent: 'center',
+  flexDirection: 'row',
+  alignItems: 'center',
+  fontWeight: '600',
+}))
+
+export const BoxCloseIconStyled = styled(Box)(() => ({
+  position: 'absolute',
+  top: '0.1rem',
+  right: '0.1rem',
 }))

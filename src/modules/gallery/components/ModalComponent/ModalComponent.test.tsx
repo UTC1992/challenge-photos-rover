@@ -60,4 +60,21 @@ describe('ModalComponent', () => {
     // Assert
     expect(children).toBeInTheDocument()
   })
+
+  it('should render title', () => {
+    // Arrange
+    const open = true
+
+    render(
+      <ModalComponent open={open} title="Data List">
+        <>Hi</>
+      </ModalComponent>,
+    )
+
+    // Act
+    const title = screen.getByText('Data List')
+
+    // Assert
+    expect(title).toBeInTheDocument()
+  })
 })
