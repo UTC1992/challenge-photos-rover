@@ -159,15 +159,15 @@ const Home: React.FC = () => {
           flexWrap="wrap"
           rowGap={1}
         >
+          <SelectCameraComponent options={camerasList} />
+          <InputSolComponent />
+          <SelectEarthDateComponent />
           <IconButton>
             <BookmarkIcon />
           </IconButton>
           <IconButton>
             <HighlightOffRoundedIcon />
           </IconButton>
-          <SelectCameraComponent options={camerasList} />
-          <InputSolComponent />
-          <SelectEarthDateComponent />
         </Stack>
       </div>
       <div className={styles.page__bookmarks}>

@@ -17,20 +17,29 @@ const SelectCameraComponent: React.FC<ISelectCameraComponentProps> = ({
   options = [],
 }) => {
   const [open, setOpen] = useState(false)
+  const [cameraValue, setCameraValue] = useState<ICamera>()
 
   const onChangeOpen = (): void => {
     setOpen(!open)
   }
 
+  const onChangeCamera = (camera: ICamera): void => {
+    setCameraValue(camera)
+    onChangeOpen()
+  }
+
   return (
     <>
-      <SelectButtonComponent title="Camera" onShow={onChangeOpen} />
+      <SelectButtonComponent
+        title={cameraValue?.abbreviation ?? 'Earth Date'}
+        onShow={onChangeOpen}
+      />
       {open && (
         <ModalComponent open={open} onClose={onChangeOpen} title="Cameras">
           <List>
             {options.map((item, index) => (
               <ListItem key={`${item}-${index}`} disablePadding>
-                <ListItemButton>
+                <ListItemButton onClick={() => onChangeCamera(item)}>
                   <ListItemText
                     sx={{ textAlign: 'center' }}
                     primary={item.camera}
