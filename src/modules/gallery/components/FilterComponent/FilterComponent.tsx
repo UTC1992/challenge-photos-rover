@@ -2,7 +2,7 @@
 
 import BookmarkIcon from '@mui/icons-material/Bookmark'
 import HighlightOffRoundedIcon from '@mui/icons-material/HighlightOffRounded'
-import { Grid2, IconButton } from '@mui/material'
+import { Grid2, IconButton, Tooltip } from '@mui/material'
 
 import { StackStyled } from './styledComponent'
 
@@ -43,12 +43,16 @@ const FilterComponent: React.FC = () => {
           />
         </Grid2>
         <Grid2 size={{ xs: 6, sm: 3 }}>
-          <IconButton>
-            <BookmarkIcon />
-          </IconButton>
-          <IconButton onClick={onResetFilter}>
-            <HighlightOffRoundedIcon />
-          </IconButton>
+          <Tooltip title="Add to favorite" placement="top">
+            <IconButton>
+              <BookmarkIcon />
+            </IconButton>
+          </Tooltip>
+          <Tooltip title="Reset filters" placement="top">
+            <IconButton onClick={onResetFilter}>
+              <HighlightOffRoundedIcon />
+            </IconButton>
+          </Tooltip>
         </Grid2>
       </Grid2>
     </StackStyled>
