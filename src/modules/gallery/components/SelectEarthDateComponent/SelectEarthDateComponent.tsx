@@ -1,4 +1,3 @@
-import { Button } from '@mui/material'
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 import { DateCalendar } from '@mui/x-date-pickers/DateCalendar'
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
@@ -27,6 +26,7 @@ const SelectEarthDateComponent: React.FC<ISelectEarthDateComponentProps> = ({
     if (onChangeEarthDate) {
       onChangeEarthDate(date)
     }
+    onChangeOpen()
   }
 
   return (
@@ -40,9 +40,6 @@ const SelectEarthDateComponent: React.FC<ISelectEarthDateComponentProps> = ({
           <LocalizationProvider dateAdapter={AdapterDayjs}>
             <DateCalendar value={earthDate} onChange={onChangeDate} />
           </LocalizationProvider>
-          <Button variant="outlined" onClick={onChangeOpen}>
-            Ok
-          </Button>
         </ModalComponent>
       )}
     </>
