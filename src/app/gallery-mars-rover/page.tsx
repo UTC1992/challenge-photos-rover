@@ -2,27 +2,13 @@
 
 import BookmarkIcon from '@mui/icons-material/Bookmark'
 import HighlightOffRoundedIcon from '@mui/icons-material/HighlightOffRounded'
-import {
-  Divider,
-  Grid2,
-  IconButton,
-  List,
-  ListItem,
-  ListItemButton,
-  ListItemText,
-  Stack,
-  useMediaQuery,
-} from '@mui/material'
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
-import { DateCalendar } from '@mui/x-date-pickers/DateCalendar'
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
+import { Divider, Grid2, IconButton, Stack, useMediaQuery } from '@mui/material'
 
 import BookmarkComponent from '@/modules/gallery/components/BookmarkComponent/BookmarkComponent'
 import ImageComponent from '@/modules/gallery/components/ImageComponent/ImageComponent'
 import InputSolComponent from '@/modules/gallery/components/InputSolComponent/InputSolComponent'
-import ModalComponent from '@/modules/gallery/components/ModalComponent/ModalComponent'
-import SelectButtonComponent from '@/modules/gallery/components/SelectButtonComponent/SelectButtonComponent'
 import SelectCameraComponent from '@/modules/gallery/components/SelectCameraComponent/SelectCameraComponent'
+import SelectEarthDateComponent from '@/modules/gallery/components/SelectEarthDateComponent/SelectEarthDateComponent'
 import TabMenuComponent from '@/modules/gallery/components/TabMenuComponent/TabMenuComponent'
 import TitleComponent from '@/modules/gallery/components/TitleComponent/TitleComponent'
 
@@ -181,7 +167,7 @@ const Home: React.FC = () => {
           </IconButton>
           <SelectCameraComponent options={camerasList} />
           <InputSolComponent />
-          <SelectButtonComponent title="Earth Day" />
+          <SelectEarthDateComponent />
         </Stack>
       </div>
       <div className={styles.page__bookmarks}>
@@ -237,64 +223,6 @@ const Home: React.FC = () => {
           ))}
         </Stack>
       </div>
-
-      <ModalComponent open={false}>
-        <List>
-          <ListItem>
-            <ListItemButton>
-              <ListItemText
-                sx={{ textAlign: 'center' }}
-                primary="Front Hazard Avoidance Camera"
-              />
-            </ListItemButton>
-          </ListItem>
-          <ListItem>
-            <ListItemButton>
-              <ListItemText primary="Front Hazard Avoidance Camera" />
-            </ListItemButton>
-          </ListItem>
-          <ListItem>
-            <ListItemButton>
-              <ListItemText primary="Front Hazard Avoidance Camera" />
-            </ListItemButton>
-          </ListItem>
-          <ListItem>
-            <ListItemButton>
-              <ListItemText primary="Front Hazard Avoidance Camera" />
-            </ListItemButton>
-          </ListItem>
-          <ListItem>
-            <ListItemButton>
-              <ListItemText primary="Front Hazard Avoidance Camera" />
-            </ListItemButton>
-          </ListItem>
-          <ListItem>
-            <ListItemButton>
-              <ListItemText primary="Front Hazard Avoidance Camera" />
-            </ListItemButton>
-          </ListItem>
-          <ListItem>
-            <ListItemButton>
-              <ListItemText primary="Front Hazard Avoidance Camera" />
-            </ListItemButton>
-          </ListItem>
-          <ListItem>
-            <ListItemButton>
-              <ListItemText primary="Front Hazard Avoidance Camera" />
-            </ListItemButton>
-          </ListItem>
-          <ListItem>
-            <ListItemButton>
-              <ListItemText primary="Front Hazard Avoidance Camera" />
-            </ListItemButton>
-          </ListItem>
-        </List>
-      </ModalComponent>
-      <ModalComponent open={false}>
-        <LocalizationProvider dateAdapter={AdapterDayjs}>
-          <DateCalendar />
-        </LocalizationProvider>
-      </ModalComponent>
     </main>
   )
 }
