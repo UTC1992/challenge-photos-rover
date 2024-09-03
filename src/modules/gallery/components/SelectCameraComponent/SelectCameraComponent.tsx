@@ -4,28 +4,26 @@ import { useState } from 'react'
 import ModalComponent from '../ModalComponent/ModalComponent'
 import SelectButtonComponent from '../SelectButtonComponent/SelectButtonComponent'
 
-interface ICamera {
+export interface ICamera {
   abbreviation: string
   camera: string
 }
 
 interface ISelectCameraComponentProps {
   options?: ICamera[]
+  cameraValue?: ICamera
+  onChangeCamera?: (camera: ICamera) => void
 }
 
 const SelectCameraComponent: React.FC<ISelectCameraComponentProps> = ({
   options = [],
+  cameraValue,
+  onChangeCamera,
 }) => {
   const [open, setOpen] = useState(false)
-  const [cameraValue, setCameraValue] = useState<ICamera>()
 
   const onChangeOpen = (): void => {
     setOpen(!open)
-  }
-
-  const onChangeCamera = (camera: ICamera): void => {
-    setCameraValue(camera)
-    onChangeOpen()
   }
 
   return (
@@ -39,7 +37,14 @@ const SelectCameraComponent: React.FC<ISelectCameraComponentProps> = ({
           <List>
             {options.map((item, index) => (
               <ListItem key={`${item}-${index}`} disablePadding>
-                <ListItemButton onClick={() => onChangeCamera(item)}>
+                <ListItemButton
+                  onClick={() => {
+                    if (onChangeCamera) {
+                      onChangeCamera(item)
+                    }
+                    onChangeOpen()
+                  }}
+                >
                   <ListItemText
                     sx={{ textAlign: 'center' }}
                     primary={item.camera}

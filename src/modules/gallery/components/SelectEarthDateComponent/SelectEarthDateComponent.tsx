@@ -7,16 +7,25 @@ import { useState } from 'react'
 import ModalComponent from '../ModalComponent/ModalComponent'
 import SelectButtonComponent from '../SelectButtonComponent/SelectButtonComponent'
 
-const SelectEarthDateComponent: React.FC = () => {
+interface ISelectEarthDateComponentProps {
+  onChangeEarthDate?: (date: Dayjs) => void
+  earthDate?: Dayjs | null
+}
+
+const SelectEarthDateComponent: React.FC<ISelectEarthDateComponentProps> = ({
+  onChangeEarthDate,
+  earthDate,
+}) => {
   const [open, setOpen] = useState(false)
-  const [earthDate, setEarthDate] = useState<Dayjs | null>(dayjs(new Date()))
 
   const onChangeOpen = (): void => {
     setOpen(!open)
   }
 
   const onChangeDate = (date: Dayjs): void => {
-    setEarthDate(date)
+    if (onChangeEarthDate) {
+      onChangeEarthDate(date)
+    }
     onChangeOpen()
   }
 

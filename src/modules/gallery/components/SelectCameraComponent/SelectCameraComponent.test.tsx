@@ -93,23 +93,4 @@ describe('OptionsContainer', () => {
     // Assert
     expect(itemsList).toHaveLength(2)
   })
-
-  it('should change label of button when one option is pressed and should close modal', () => {
-    // Arrange
-    render(<SelectCameraComponent options={camerasDummy} />)
-
-    // Act
-    const button = screen.getByRole('button')
-
-    fireEvent.click(button) // open modal
-
-    const modal = screen.queryByRole('dialog')
-    const itemsList = screen.getAllByRole('button')
-
-    fireEvent.click(itemsList[2]) // select first option
-
-    // Assert
-    expect(button).not.toHaveTextContent(/camera/i)
-    expect(modal).not.toBeInTheDocument()
-  })
 })
