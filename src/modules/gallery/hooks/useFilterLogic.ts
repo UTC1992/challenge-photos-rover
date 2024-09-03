@@ -1,5 +1,5 @@
 import dayjs, { Dayjs } from 'dayjs'
-import { useDeferredValue, useState } from 'react'
+import { useDeferredValue, useEffect, useState } from 'react'
 
 import { ICamera } from '../components/SelectCameraComponent/SelectCameraComponent'
 import { useSetRecoilState } from 'recoil'
@@ -37,7 +37,6 @@ export const useFilterLogic = (): IFilterLogicHook => {
 
   const onChangeMarsSol = (value: number): void => {
     setMarsSol(value)
-    setFilters((prev) => ({ ...prev, sol: deferredMarsSolQuery }))
   }
 
   const onResetFilter = (): void => {
@@ -45,6 +44,10 @@ export const useFilterLogic = (): IFilterLogicHook => {
     setEarthDate(null)
     setMarsSol(1)
   }
+
+  useEffect(() => {
+    setFilters((prev) => ({ ...prev, sol: deferredMarsSolQuery }))
+  }, [deferredMarsSolQuery])
 
   return {
     marsSol,
