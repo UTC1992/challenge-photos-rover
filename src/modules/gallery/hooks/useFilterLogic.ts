@@ -1,9 +1,14 @@
-import { useEffect, useState } from 'react'
-import { ICamera } from '../components/SelectCameraComponent/SelectCameraComponent'
 import dayjs, { Dayjs } from 'dayjs'
+import { useDeferredValue, useEffect, useState } from 'react'
+
+import { useRecoilValue, useSetRecoilState } from 'recoil'
+
 import { useGetPhotos } from './useGetPhotos'
-import { useSetRecoilState } from 'recoil'
+
+import { ICamera } from '../components/SelectCameraComponent/SelectCameraComponent'
+
 import { photosListAtom } from '../states/photosListAtom'
+import { roverNameAtom } from '../states/roverNameAtom'
 
 interface IFilterLogicHook {
   marsSol: number
@@ -17,9 +22,11 @@ interface IFilterLogicHook {
 
 export const useFilterLogic = (): IFilterLogicHook => {
   const [marsSol, setMarsSol] = useState(1)
+  const deferredMarsSolQuery = useDeferredValue(marsSol)
   const [cameraValue, setCameraValue] = useState<ICamera>()
   const [earthDate, setEarthDate] = useState<Dayjs | null>(null)
   const setPhotosListAtom = useSetRecoilState(photosListAtom)
+  const roverName = useRecoilValue(roverNameAtom)
 
   const onChangeCamera = (camera: ICamera): void => {
     setCameraValue(camera)
@@ -42,18 +49,22 @@ export const useFilterLogic = (): IFilterLogicHook => {
   const { result, onGetPhotos } = useGetPhotos()
 
   useEffect(() => {
-    onGetPhotos({
-      rover: 'curiosity',
-      sol: marsSol,
-      camera: cameraValue?.abbreviation,
-      earthDate: dayjs(earthDate).format('YYYY-MM-DD'),
-    })
-  }, [marsSol, cameraValue, earthDate])
+    if (roverName) {
+      onGetPhotos({
+        rover: roverName,
+        sol: deferredMarsSolQuery,
+        camera: cameraValue?.abbreviation,
+        earthDate: dayjs(earthDate).format('YYYY-MM-DD'),
+      })
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [deferredMarsSolQuery, cameraValue, earthDate, roverName])
 
   useEffect(() => {
     if (result.length > 0) {
       setPhotosListAtom(result)
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [result])
 
   return {

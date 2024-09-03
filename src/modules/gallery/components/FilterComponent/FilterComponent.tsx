@@ -7,10 +7,10 @@ import { Grid2, IconButton, Tooltip } from '@mui/material'
 import { StackStyled } from './styledComponent'
 
 import { camerasList } from '../../constants/camerasList'
+import { useFilterLogic } from '../../hooks/useFilterLogic'
 import InputSolComponent from '../InputSolComponent/InputSolComponent'
 import SelectCameraComponent from '../SelectCameraComponent/SelectCameraComponent'
 import SelectEarthDateComponent from '../SelectEarthDateComponent/SelectEarthDateComponent'
-import { useFilterLogic } from '../../hooks/useFilterLogic'
 
 const FilterComponent: React.FC = () => {
   const {

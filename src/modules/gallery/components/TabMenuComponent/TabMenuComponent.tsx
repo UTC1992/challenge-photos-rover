@@ -1,21 +1,46 @@
 import { ToggleButtonGroup } from '@mui/material'
 
+import { useState, useTransition } from 'react'
+
 import { ToggleButtonStyled } from './styledComponents'
 
 interface ITabMenuComponentProps {
-  onNavigate?: () => void
+  onNavigate: (value: string) => void
 }
 
 const TabMenuComponent: React.FC<ITabMenuComponentProps> = ({ onNavigate }) => {
+  const [roverName, setRoverName] = useState('curiosity')
+  const [, startTransition] = useTransition()
+
+  const onChange = (
+    event: React.MouseEvent<HTMLElement>,
+    newAlignment: string,
+  ): void => {
+    startTransition(() => {
+      setRoverName(newAlignment)
+    })
+  }
+
   return (
-    <ToggleButtonGroup color="primary" exclusive aria-label="Platform">
-      <ToggleButtonStyled value="web" onClick={onNavigate}>
+    <ToggleButtonGroup
+      value={roverName}
+      onChange={onChange}
+      exclusive
+      aria-label="Platform"
+    >
+      <ToggleButtonStyled
+        value="curiosity"
+        onClick={() => onNavigate('curiosity')}
+      >
         Curiosity
       </ToggleButtonStyled>
-      <ToggleButtonStyled value="android" onClick={onNavigate}>
+      <ToggleButtonStyled
+        value="opportunity"
+        onClick={() => onNavigate('opportunity')}
+      >
         Opportunity
       </ToggleButtonStyled>
-      <ToggleButtonStyled value="ios" onClick={onNavigate}>
+      <ToggleButtonStyled value="spirit" onClick={() => onNavigate('spirit')}>
         Spirit
       </ToggleButtonStyled>
     </ToggleButtonGroup>

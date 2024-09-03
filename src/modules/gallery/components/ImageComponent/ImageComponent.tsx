@@ -25,7 +25,7 @@ const ImageComponent: React.FC<IImageComponentProps> = ({
       }}
       width={300}
       height={350}
-      priority
+      loading="lazy"
     />
   )
 }

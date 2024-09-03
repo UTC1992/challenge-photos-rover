@@ -1,6 +1,6 @@
 import { useMutation } from '@tanstack/react-query'
+
 import { getPhotos, IGetPhotosParams } from '../services/getPhotos'
-import { useEffect } from 'react'
 import { IPhoto } from '../services/interfaces'
 
 interface IGetPhotosHook {
@@ -12,12 +12,6 @@ interface IGetPhotosHook {
 export const useGetPhotos = (): IGetPhotosHook => {
   const { mutate, data, isSuccess } = useMutation({
     mutationFn: getPhotos,
-    onSuccess: () => {
-      console.log('exito')
-    },
-    onError: (error) => {
-      console.log('error')
-    },
   })
 
   const onGetPhotos = (args: IGetPhotosParams): void => {

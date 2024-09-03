@@ -6,7 +6,7 @@ const nextConfig = {
     styledComponents: true,
   },
   images: {
-    domains: ['mars.jpl.nasa.gov'],
+    remotePatterns: [{ hostname: 'mars.jpl.nasa.gov' }, { hostname: 'mars.nasa.gov' }],
   },
 
 }

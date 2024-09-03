@@ -22,7 +22,7 @@ export const getPhotos = async ({
   try {
     const dateSol = sol ? `sol=${sol}` : ''
     const dateEarth = earthDate ? `earth_date=${earthDate}` : ''
-    const dateQuery = `${dateSol || dateEarth}`
+    const dateQuery = `${dateSol || ''}&${dateEarth || ''}`
     const cameraQuery = camera ? `camera=${camera}` : ''
 
     const response = await axios.get(

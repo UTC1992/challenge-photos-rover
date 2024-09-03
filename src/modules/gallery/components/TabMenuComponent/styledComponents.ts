@@ -7,6 +7,8 @@ export const ToggleButtonStyled = styled(ToggleButton)(() => ({
     ':hover': {
       backgroundColor: 'transparent',
     },
-    textTransform: 'Capitalize',
   },
+  fontSize: '0.7rem',
+  fontWeight: 600,
+  width: '100px',
 }))

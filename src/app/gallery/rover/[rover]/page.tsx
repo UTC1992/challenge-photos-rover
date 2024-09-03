@@ -1,11 +1,26 @@
 'use client'
 
+import { useEffect } from 'react'
+import { useRecoilValue, useSetRecoilState } from 'recoil'
+
 import ImagesList from '@/modules/gallery/components/ImagesList/ImagesList'
-import { useRecoilValue } from 'recoil'
 import { photosListAtom } from '@/modules/gallery/states/photosListAtom'
 
-const Home: React.FC = () => {
+import { roverNameAtom } from '@/modules/gallery/states/roverNameAtom'
+
+export interface IParamsPage {
+  params: { rover: string }
+}
+
+const Home: React.FC<IParamsPage> = ({ params }) => {
   const photos = useRecoilValue(photosListAtom)
+  const setRoverNameAtom = useSetRecoilState(roverNameAtom)
+
+  useEffect(() => {
+    setRoverNameAtom(params.rover)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [params])
+
   // const containerRef = useRef<HTMLDivElement | undefined>()
   // const [scrollPosition, setScrollPosition] = useState(0)
 
@@ -64,6 +79,7 @@ const Home: React.FC = () => {
     //       <TabMenuComponent />
     //     </Stack>
     //   </div>
+
     <ImagesList photos={photos} />
     // </main>
   )
