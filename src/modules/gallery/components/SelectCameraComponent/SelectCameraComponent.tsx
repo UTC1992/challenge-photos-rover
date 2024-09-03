@@ -31,7 +31,7 @@ const SelectCameraComponent: React.FC<ISelectCameraComponentProps> = ({
   return (
     <>
       <SelectButtonComponent
-        title={cameraValue?.abbreviation ?? 'Earth Date'}
+        title={cameraValue?.abbreviation ?? 'Camera'}
         onShow={onChangeOpen}
       />
       {open && (

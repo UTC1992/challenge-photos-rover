@@ -1,18 +1,12 @@
 'use client'
 
-import BookmarkIcon from '@mui/icons-material/Bookmark'
-import HighlightOffRoundedIcon from '@mui/icons-material/HighlightOffRounded'
-import { Divider, Grid2, IconButton, Stack, useMediaQuery } from '@mui/material'
+import { Divider, Grid2, Stack } from '@mui/material'
 
 import BookmarkComponent from '@/modules/gallery/components/BookmarkComponent/BookmarkComponent'
+import FilterComponent from '@/modules/gallery/components/FilterComponent/FilterComponent'
 import ImageComponent from '@/modules/gallery/components/ImageComponent/ImageComponent'
-import InputSolComponent from '@/modules/gallery/components/InputSolComponent/InputSolComponent'
-import SelectCameraComponent from '@/modules/gallery/components/SelectCameraComponent/SelectCameraComponent'
-import SelectEarthDateComponent from '@/modules/gallery/components/SelectEarthDateComponent/SelectEarthDateComponent'
 import TabMenuComponent from '@/modules/gallery/components/TabMenuComponent/TabMenuComponent'
 import TitleComponent from '@/modules/gallery/components/TitleComponent/TitleComponent'
-
-import { camerasList } from '@/modules/gallery/constants/camerasList'
 
 import styles from './page.module.css'
 
@@ -127,7 +121,6 @@ const dummyBookmarks = [
 ]
 
 const Home: React.FC = () => {
-  const isMobile = useMediaQuery('(max-width: 600px)')
   // const containerRef = useRef<HTMLDivElement | undefined>()
   // const [scrollPosition, setScrollPosition] = useState(0)
 
@@ -150,25 +143,7 @@ const Home: React.FC = () => {
       </div>
 
       <div className={styles.page__filter}>
-        <Stack
-          direction={isMobile ? 'column' : 'row'}
-          columnGap={2}
-          width="100%"
-          alignItems="center"
-          justifyContent="center"
-          flexWrap="wrap"
-          rowGap={1}
-        >
-          <SelectCameraComponent options={camerasList} />
-          <InputSolComponent />
-          <SelectEarthDateComponent />
-          <IconButton>
-            <BookmarkIcon />
-          </IconButton>
-          <IconButton>
-            <HighlightOffRoundedIcon />
-          </IconButton>
-        </Stack>
+        <FilterComponent />
       </div>
       <div className={styles.page__bookmarks}>
         <Grid2 container columns={24}>
