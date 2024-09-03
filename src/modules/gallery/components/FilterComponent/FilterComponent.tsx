@@ -1,38 +1,27 @@
+'use client'
+
 import BookmarkIcon from '@mui/icons-material/Bookmark'
 import HighlightOffRoundedIcon from '@mui/icons-material/HighlightOffRounded'
 import { Grid2, IconButton } from '@mui/material'
-
-import dayjs, { Dayjs } from 'dayjs'
-import { useState } from 'react'
 
 import { StackStyled } from './styledComponent'
 
 import { camerasList } from '../../constants/camerasList'
 import InputSolComponent from '../InputSolComponent/InputSolComponent'
-import SelectCameraComponent, {
-  ICamera,
-} from '../SelectCameraComponent/SelectCameraComponent'
+import SelectCameraComponent from '../SelectCameraComponent/SelectCameraComponent'
 import SelectEarthDateComponent from '../SelectEarthDateComponent/SelectEarthDateComponent'
+import { useFilterLogic } from '../../hooks/useFilterLogic'
 
 const FilterComponent: React.FC = () => {
-  const [marsSol, setMarsSol] = useState(1)
-  const [cameraValue, setCameraValue] = useState<ICamera>()
-  const [earthDate, setEarthDate] = useState<Dayjs | null>(dayjs(new Date()))
-
-  const onChangeCamera = (camera: ICamera): void => {
-    setCameraValue(camera)
-  }
-
-  const onChangeEarthDate = (date: Dayjs): void => {
-    setEarthDate(date)
-  }
-
-  // eslint-disable-next-line no-console
-  console.log(
+  const {
+    cameraValue,
+    earthDate,
     marsSol,
-    cameraValue?.abbreviation,
-    dayjs(earthDate).format('DD-MM-YYYY'),
-  )
+    onChangeCamera,
+    onChangeEarthDate,
+    onChangeMarsSol,
+    onResetFilter,
+  } = useFilterLogic()
 
   return (
     <StackStyled direction={'row'}>
@@ -45,10 +34,7 @@ const FilterComponent: React.FC = () => {
           />
         </Grid2>
         <Grid2 size={{ xs: 6, sm: 3 }}>
-          <InputSolComponent
-            value={marsSol}
-            onChange={(value) => setMarsSol(value)}
-          />
+          <InputSolComponent value={marsSol} onChange={onChangeMarsSol} />
         </Grid2>
         <Grid2 size={{ xs: 6, sm: 3 }}>
           <SelectEarthDateComponent
@@ -60,7 +46,7 @@ const FilterComponent: React.FC = () => {
           <IconButton>
             <BookmarkIcon />
           </IconButton>
-          <IconButton>
+          <IconButton onClick={onResetFilter}>
             <HighlightOffRoundedIcon />
           </IconButton>
         </Grid2>

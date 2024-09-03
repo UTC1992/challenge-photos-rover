@@ -30,3 +30,7 @@ export interface ICameraElement {
   name: string
   full_name: string
 }
+
+export interface IGetPhotosResponse {
+  photos: IPhoto[]
+}
