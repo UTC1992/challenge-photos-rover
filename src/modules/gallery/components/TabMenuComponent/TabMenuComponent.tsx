@@ -16,9 +16,7 @@ const TabMenuComponent: React.FC<ITabMenuComponentProps> = ({ onNavigate }) => {
     event: React.MouseEvent<HTMLElement>,
     newAlignment: string,
   ): void => {
-    startTransition(() => {
-      setRoverName(newAlignment)
-    })
+    setRoverName(newAlignment)
   }
 
   return (
@@ -30,17 +28,32 @@ const TabMenuComponent: React.FC<ITabMenuComponentProps> = ({ onNavigate }) => {
     >
       <ToggleButtonStyled
         value="curiosity"
-        onClick={() => onNavigate('curiosity')}
+        onClick={() => {
+          startTransition(() => {
+            onNavigate('curiosity')
+          })
+        }}
       >
         Curiosity
       </ToggleButtonStyled>
       <ToggleButtonStyled
         value="opportunity"
-        onClick={() => onNavigate('opportunity')}
+        onClick={() =>
+          startTransition(() => {
+            onNavigate('opportunity')
+          })
+        }
       >
         Opportunity
       </ToggleButtonStyled>
-      <ToggleButtonStyled value="spirit" onClick={() => onNavigate('spirit')}>
+      <ToggleButtonStyled
+        value="spirit"
+        onClick={() =>
+          startTransition(() => {
+            onNavigate('spirit')
+          })
+        }
+      >
         Spirit
       </ToggleButtonStyled>
     </ToggleButtonGroup>

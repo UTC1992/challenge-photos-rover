@@ -1,15 +1,13 @@
 'use client'
 
 import { Divider, Stack } from '@mui/material'
+import styles from './layout.module.css'
+import TitleComponent from '@/modules/gallery/components/TitleComponent/TitleComponent'
+import FilterComponent from '@/modules/gallery/components/FilterComponent/FilterComponent'
+import BookMarkListComponent from '@/modules/gallery/components/BookMarkListComponent/BookMarkListComponent'
+import TabMenuComponent from '@/modules/gallery/components/TabMenuComponent/TabMenuComponent'
 import { useRouter } from 'next/navigation'
 import { ReactNode } from 'react'
-
-import BookMarkListComponent from '@/modules/gallery/components/BookMarkListComponent/BookMarkListComponent'
-import FilterComponent from '@/modules/gallery/components/FilterComponent/FilterComponent'
-import TabMenuComponent from '@/modules/gallery/components/TabMenuComponent/TabMenuComponent'
-import TitleComponent from '@/modules/gallery/components/TitleComponent/TitleComponent'
-
-import styles from './page.module.css'
 
 interface ILayoutProps {
   children: ReactNode

@@ -1,6 +1,8 @@
 'use client'
 
+import { Box, Paper } from '@mui/material'
 import Image from 'next/image'
+import { ImageBoxStyled } from './styledComponents'
 
 interface IImageComponentProps {
   url: string
@@ -12,21 +14,23 @@ const ImageComponent: React.FC<IImageComponentProps> = ({
   description,
 }) => {
   return (
-    <Image
-      quality={75}
-      src={url}
-      alt={description}
-      style={{
-        objectFit: 'contain',
-        position: 'relative',
-        width: '100%',
-        height: 'auto',
-        borderRadius: '10px',
-      }}
-      width={300}
-      height={350}
-      loading="lazy"
-    />
+    <ImageBoxStyled>
+      <Image
+        quality={75}
+        src={url}
+        alt={description}
+        style={{
+          objectFit: 'contain',
+          position: 'relative',
+          width: '100%',
+          height: 'auto',
+          borderRadius: '9px',
+        }}
+        width={300}
+        height={350}
+        priority
+      />
+    </ImageBoxStyled>
   )
 }
 

@@ -1,14 +1,9 @@
 import dayjs, { Dayjs } from 'dayjs'
-import { useDeferredValue, useEffect, useState } from 'react'
-
-import { useRecoilValue, useSetRecoilState } from 'recoil'
-
-import { useGetPhotos } from './useGetPhotos'
+import { useDeferredValue, useState } from 'react'
 
 import { ICamera } from '../components/SelectCameraComponent/SelectCameraComponent'
-
-import { photosListAtom } from '../states/photosListAtom'
-import { roverNameAtom } from '../states/roverNameAtom'
+import { useSetRecoilState } from 'recoil'
+import { photosFiltersAtom } from '../states/photosFiltersAtom'
 
 interface IFilterLogicHook {
   marsSol: number
@@ -25,19 +20,24 @@ export const useFilterLogic = (): IFilterLogicHook => {
   const deferredMarsSolQuery = useDeferredValue(marsSol)
   const [cameraValue, setCameraValue] = useState<ICamera>()
   const [earthDate, setEarthDate] = useState<Dayjs | null>(null)
-  const setPhotosListAtom = useSetRecoilState(photosListAtom)
-  const roverName = useRecoilValue(roverNameAtom)
+  const setFilters = useSetRecoilState(photosFiltersAtom)
 
   const onChangeCamera = (camera: ICamera): void => {
     setCameraValue(camera)
+    setFilters((prev) => ({ ...prev, camera: camera.abbreviation }))
   }
 
   const onChangeEarthDate = (date: Dayjs): void => {
     setEarthDate(date)
+    setFilters((prev) => ({
+      ...prev,
+      earthDate: dayjs(date).format('YYYY-MM-DD'),
+    }))
   }
 
   const onChangeMarsSol = (value: number): void => {
     setMarsSol(value)
+    setFilters((prev) => ({ ...prev, sol: deferredMarsSolQuery }))
   }
 
   const onResetFilter = (): void => {
@@ -45,27 +45,6 @@ export const useFilterLogic = (): IFilterLogicHook => {
     setEarthDate(null)
     setMarsSol(1)
   }
-
-  const { result, onGetPhotos } = useGetPhotos()
-
-  useEffect(() => {
-    if (roverName) {
-      onGetPhotos({
-        rover: roverName,
-        sol: deferredMarsSolQuery,
-        camera: cameraValue?.abbreviation,
-        earthDate: dayjs(earthDate).format('YYYY-MM-DD'),
-      })
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [deferredMarsSolQuery, cameraValue, earthDate, roverName])
-
-  useEffect(() => {
-    if (result.length > 0) {
-      setPhotosListAtom(result)
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [result])
 
   return {
     marsSol,

@@ -1,87 +1,91 @@
 'use client'
 
-import { useEffect } from 'react'
-import { useRecoilValue, useSetRecoilState } from 'recoil'
+import { CircularProgress, Stack, Typography } from '@mui/material'
+import dayjs from 'dayjs'
+import dynamic from 'next/dynamic'
+import { useEffect, useState } from 'react'
 
-import ImagesList from '@/modules/gallery/components/ImagesList/ImagesList'
-import { photosListAtom } from '@/modules/gallery/states/photosListAtom'
+import InfiniteScroll from 'react-infinite-scroll-component'
 
-import { roverNameAtom } from '@/modules/gallery/states/roverNameAtom'
+import { useGetPhotos } from '@/modules/gallery/hooks/useGetPhotos'
+
+import { IPhoto } from '@/modules/gallery/services/interfaces'
+import { useRecoilValue } from 'recoil'
+import { photosFiltersAtom } from '@/modules/gallery/states/photosFiltersAtom'
+
+const ImagesList = dynamic(
+  () => import('@/modules/gallery/components/ImagesList/ImagesList'),
+  {
+    ssr: false,
+    loading: () => <p>Loading...</p>,
+  },
+)
 
 export interface IParamsPage {
   params: { rover: string }
 }
 
 const Home: React.FC<IParamsPage> = ({ params }) => {
-  const photos = useRecoilValue(photosListAtom)
-  const setRoverNameAtom = useSetRecoilState(roverNameAtom)
+  const [photos, setPhotos] = useState<IPhoto[]>([])
+  const [hasMore, setHasMore] = useState(true)
+  const [page, setPage] = useState(1)
+  const { result, onGetPhotos, isLoading } = useGetPhotos()
+  const filters = useRecoilValue(photosFiltersAtom)
 
   useEffect(() => {
-    setRoverNameAtom(params.rover)
+    if (params.rover) {
+      onGetPhotos({
+        ...filters,
+        rover: params.rover,
+        page,
+      })
+      setPhotos([])
+      setPage(1)
+      setHasMore(true)
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [params])
+  }, [filters, params])
 
-  // const containerRef = useRef<HTMLDivElement | undefined>()
-  // const [scrollPosition, setScrollPosition] = useState(0)
+  useEffect(() => {
+    if (result.length > 0) {
+      setPhotos((prev) => [...prev, ...result])
+      setPage((prev) => prev + 1)
+      setHasMore(result.length > 0)
+    } else if (result && !isLoading) {
+      setHasMore(result.length > 0)
+    }
 
-  // const handleScroll = (scrollAmount: number): void => {
-  //   const newScrollPosition = scrollPosition + scrollAmount
-
-  //   setScrollPosition(newScrollPosition)
-
-  //   if (containerRef.current) {
-  //     containerRef.current.scrollLeft = newScrollPosition
-  //   }
-  // }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [result])
 
   return (
-    // <main className={styles.page}>
-    //   <div className={styles.page__header}>
-    //     <Stack alignItems="center">
-    //       <TitleComponent title="Galería Mars Rover" />
-    //     </Stack>
-    //   </div>
-
-    //   <div className={styles.page__filter}>
-    //     <FilterComponent />
-    //   </div>
-    //   <div className={styles.page__bookmarks}>
-    //     <Grid2 container columns={24}>
-    //       <Grid2 size={{ xs: 1, sm: 1, md: 2, lg: 3, xl: 6 }} />
-    //       <Grid2 size={{ xs: 22, sm: 22, md: 20, lg: 18, xl: 12 }}>
-    //         <Stack
-    //           direction="row"
-    //           columnGap={1}
-    //           sx={{
-    //             overflowX: 'scroll',
-    //             scrollbarWidth: 'none',
-    //           }}
-    //         >
-    //           {dummyBookmarks.map((bookmark) => (
-    //             <BookmarkComponent
-    //               key={'bookmark-' + bookmark.id}
-    //               title={bookmark.title}
-    //               // eslint-disable-next-line no-console
-    //               onDelete={() => console.log('delete')}
-    //             />
-    //           ))}
-    //         </Stack>
-    //       </Grid2>
-    //       <Grid2 size={{ xs: 1, sm: 1, md: 2, lg: 3, xl: 6 }} />
-    //     </Grid2>
-    //     {/* <button onClick={() => handleScroll(-500)}>left</button>
-    //     <button onClick={() => handleScroll(500)}>right</button> */}
-    //   </div>
-
-    //   <div className={styles.page__divider}>
-    //     <Divider />
-    //     <Stack width="100%" alignItems="center">
-    //       <TabMenuComponent />
-    //     </Stack>
-    //   </div>
-
-    <ImagesList photos={photos} />
-    // </main>
+    <>
+      {result.length > 0 ? (
+        <InfiniteScroll
+          dataLength={photos.length} // This is important field to render the next data
+          next={() => {
+            if (params.rover) {
+              onGetPhotos({
+                ...filters,
+                rover: params.rover,
+                page,
+              })
+            }
+          }}
+          hasMore={hasMore}
+          loader={
+            <Stack justifyContent="center" alignItems="center" margin={5}>
+              <CircularProgress size={50} />
+            </Stack>
+          }
+          style={{ overflow: 'hidden' }}
+        >
+          <ImagesList photos={photos} />
+        </InfiniteScroll>
+      ) : (
+        <Typography variant="h5">No photos with this filters</Typography>
+      )}
+    </>
   )
 }
 

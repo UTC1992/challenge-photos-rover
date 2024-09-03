@@ -7,10 +7,11 @@ interface IGetPhotosHook {
   isSuccess: boolean
   result: IPhoto[]
   onGetPhotos: (args: IGetPhotosParams) => void
+  isLoading: boolean
 }
 
 export const useGetPhotos = (): IGetPhotosHook => {
-  const { mutate, data, isSuccess } = useMutation({
+  const { mutate, data, isSuccess, isPending } = useMutation({
     mutationFn: getPhotos,
   })
 
@@ -22,5 +23,6 @@ export const useGetPhotos = (): IGetPhotosHook => {
     isSuccess,
     result: data?.photos || [],
     onGetPhotos,
+    isLoading: isPending,
   }
 }

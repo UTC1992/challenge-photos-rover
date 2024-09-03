@@ -1,4 +1,5 @@
 import { Stack } from '@mui/material'
+
 import { IPhoto } from '../../services/interfaces'
 import ImageComponent from '../ImageComponent/ImageComponent'
 
@@ -11,11 +12,12 @@ const ImagesList: React.FC<IImagesListProps> = ({ photos }) => {
     <Stack
       display="grid"
       gridTemplateColumns="1fr 1fr 1fr"
+      gridTemplateRows="auto"
       direction="row"
       flexWrap="wrap"
       justifyContent="center"
-      columnGap={0.4}
-      rowGap={0.4}
+      columnGap={1}
+      rowGap={1}
     >
       {photos.map((image) => (
         <ImageComponent

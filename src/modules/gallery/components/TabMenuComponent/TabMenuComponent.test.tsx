@@ -6,7 +6,7 @@ import TabMenuComponent from './TabMenuComponent'
 describe('TabMenuComponent', () => {
   it('should render 3 buttons', () => {
     // Arrange
-    render(<TabMenuComponent />)
+    render(<TabMenuComponent onNavigate={() => ({})} />)
 
     // Act
     const buttons = screen.queryAllByRole('button')

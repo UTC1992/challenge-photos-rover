@@ -4,13 +4,17 @@ import BookmarkIcon from '@mui/icons-material/Bookmark'
 import HighlightOffRoundedIcon from '@mui/icons-material/HighlightOffRounded'
 import { Grid2, IconButton, Tooltip } from '@mui/material'
 
+import { Dayjs } from 'dayjs'
+
 import { StackStyled } from './styledComponent'
 
 import { camerasList } from '../../constants/camerasList'
-import { useFilterLogic } from '../../hooks/useFilterLogic'
 import InputSolComponent from '../InputSolComponent/InputSolComponent'
-import SelectCameraComponent from '../SelectCameraComponent/SelectCameraComponent'
+import SelectCameraComponent, {
+  ICamera,
+} from '../SelectCameraComponent/SelectCameraComponent'
 import SelectEarthDateComponent from '../SelectEarthDateComponent/SelectEarthDateComponent'
+import { useFilterLogic } from '../../hooks/useFilterLogic'
 
 const FilterComponent: React.FC = () => {
   const {
