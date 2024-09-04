@@ -1,4 +1,9 @@
-import { Stack } from '@mui/material'
+import {
+  ImageList,
+  ImageListItem,
+  ImageListItemBar,
+  Stack,
+} from '@mui/material'
 
 import { IPhoto } from '../../services/interfaces'
 import ImageComponent from '../ImageComponent/ImageComponent'
@@ -10,22 +15,24 @@ interface IImagesListProps {
 const ImagesList: React.FC<IImagesListProps> = ({ photos }) => {
   return (
     <Stack
-      display="grid"
-      gridTemplateColumns="1fr 1fr 1fr"
-      gridTemplateRows="auto"
-      direction="row"
       flexWrap="wrap"
       justifyContent="center"
+      alignItems="center"
       columnGap={1}
       rowGap={1}
     >
-      {photos.map((image) => (
-        <ImageComponent
-          key={image.id}
-          url={image.img_src}
-          description="Image Nasa"
-        />
-      ))}
+      <ImageList variant="masonry" cols={3} gap={8}>
+        {photos.map((item) => (
+          <ImageListItem key={item.img_src}>
+            <ImageComponent description="" url={item.img_src} />
+            <ImageListItemBar
+              title={item.camera.full_name}
+              subtitle={item.rover.name}
+              sx={{ borderRadius: '9px' }}
+            />
+          </ImageListItem>
+        ))}
+      </ImageList>
     </Stack>
   )
 }

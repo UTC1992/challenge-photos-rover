@@ -1,8 +1,9 @@
 import dayjs, { Dayjs } from 'dayjs'
 import { useDeferredValue, useEffect, useState } from 'react'
 
-import { ICamera } from '../components/SelectCameraComponent/SelectCameraComponent'
 import { useSetRecoilState } from 'recoil'
+
+import { ICamera } from '../components/SelectCameraComponent/SelectCameraComponent'
 import { photosFiltersAtom } from '../states/photosFiltersAtom'
 
 interface IFilterLogicHook {
@@ -47,6 +48,7 @@ export const useFilterLogic = (): IFilterLogicHook => {
 
   useEffect(() => {
     setFilters((prev) => ({ ...prev, sol: deferredMarsSolQuery }))
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [deferredMarsSolQuery])
 
   return {

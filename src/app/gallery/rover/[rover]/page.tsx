@@ -1,16 +1,13 @@
 'use client'
 
-import { CircularProgress, Stack, Typography } from '@mui/material'
-import dayjs from 'dayjs'
+import { CircularProgress, Stack } from '@mui/material'
 import dynamic from 'next/dynamic'
 import { useEffect, useState } from 'react'
-
 import InfiniteScroll from 'react-infinite-scroll-component'
+import { useRecoilValue } from 'recoil'
 
 import { useGetPhotos } from '@/modules/gallery/hooks/useGetPhotos'
-
 import { IPhoto } from '@/modules/gallery/services/interfaces'
-import { useRecoilValue } from 'recoil'
 import { photosFiltersAtom } from '@/modules/gallery/states/photosFiltersAtom'
 
 const ImagesList = dynamic(
@@ -37,8 +34,9 @@ const Home: React.FC<IParamsPage> = ({ params }) => {
       onGetPhotos({
         ...filters,
         rover: params.rover,
-        page,
+        page: 1,
       })
+
       setPhotos([])
       setPage(1)
       setHasMore(true)
@@ -54,38 +52,33 @@ const Home: React.FC<IParamsPage> = ({ params }) => {
     } else if (result && !isLoading) {
       setHasMore(result.length > 0)
     }
-
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [result])
 
   return (
-    <>
-      {result.length > 0 ? (
-        <InfiniteScroll
-          dataLength={photos.length} // This is important field to render the next data
-          next={() => {
-            if (params.rover) {
-              onGetPhotos({
-                ...filters,
-                rover: params.rover,
-                page,
-              })
-            }
-          }}
-          hasMore={hasMore}
-          loader={
-            <Stack justifyContent="center" alignItems="center" margin={5}>
-              <CircularProgress size={50} />
-            </Stack>
-          }
-          style={{ overflow: 'hidden' }}
-        >
-          <ImagesList photos={photos} />
-        </InfiniteScroll>
-      ) : (
-        <Typography variant="h5">No photos with this filters</Typography>
-      )}
-    </>
+    <InfiniteScroll
+      dataLength={photos.length} // This is important field to render the next data
+      next={() => {
+        if (params.rover) {
+          onGetPhotos({
+            ...filters,
+            rover: params.rover,
+            page,
+          })
+        }
+      }}
+      hasMore={hasMore}
+      loader={
+        <Stack justifyContent="center" alignItems="center" margin={5}>
+          <CircularProgress size={50} />
+        </Stack>
+      }
+      pullDownToRefresh
+      pullDownToRefreshThreshold={0}
+      style={{ overflow: 'hidden' }}
+    >
+      <ImagesList photos={photos} />
+    </InfiniteScroll>
   )
 }
 
