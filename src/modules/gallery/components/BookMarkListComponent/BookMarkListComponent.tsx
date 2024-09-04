@@ -1,61 +1,11 @@
-import { Grid2, Stack } from '@mui/material'
+import { Grid2, Stack, Tooltip } from '@mui/material'
 
+import { useListenBookmarks } from '../../hooks/useListenBookmarks'
 import BookmarkComponent from '../BookmarkComponent/BookmarkComponent'
-const dummyBookmarks = [
-  {
-    id: 1,
-    title: 'Camera, Date Sun',
-  },
-  {
-    id: 2,
-    title: 'Camera, Date Sun',
-  },
-  {
-    id: 3,
-    title: 'Camera, Date Sun',
-  },
-  {
-    id: 4,
-    title: 'Camera, Date Sun',
-  },
-  {
-    id: 5,
-    title: 'Camera, Date Sun',
-  },
-  {
-    id: 6,
-    title: 'Camera, Date Sun',
-  },
-  {
-    id: 7,
-    title: 'Camera, Date Sun',
-  },
-  {
-    id: 8,
-    title: 'Camera, Date Sun',
-  },
-  {
-    id: 9,
-    title: 'Camera, Date Sun',
-  },
-  {
-    id: 10,
-    title: 'Camera, Date Sun',
-  },
-  {
-    id: 11,
-    title: 'Camera, Date Sun',
-  },
-  {
-    id: 12,
-    title: 'Camera, Date Sun',
-  },
-  {
-    id: 13,
-    title: 'Camera, Date Sun',
-  },
-]
+
 const BookMarkListComponent: React.FC = () => {
+  const { items } = useListenBookmarks()
+
   return (
     <Grid2 container columns={24}>
       <Grid2 size={{ xs: 1, sm: 1, md: 2, lg: 3, xl: 6 }} />
@@ -68,10 +18,10 @@ const BookMarkListComponent: React.FC = () => {
             scrollbarWidth: 'none',
           }}
         >
-          {dummyBookmarks.map((bookmark) => (
+          {items.map(({ id, ...rest }) => (
             <BookmarkComponent
-              key={'bookmark-' + bookmark.id}
-              title={bookmark.title}
+              key={'bookmark-' + id}
+              title={`${Object.values(rest).join(', ')}`}
               // eslint-disable-next-line no-console
               onDelete={() => console.log('delete')}
             />
