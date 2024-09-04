@@ -13,6 +13,7 @@ interface IInfiniteScrollLogicHook {
   hasMore: boolean
   filters: IGetPhotosParams
   onFilterPhotos: () => void
+  isLoading: boolean
 }
 
 export const useInfiniteScrollLogic = (
@@ -73,5 +74,6 @@ export const useInfiniteScrollLogic = (
     hasMore,
     onFilterPhotos,
     filters,
+    isLoading,
   }
 }

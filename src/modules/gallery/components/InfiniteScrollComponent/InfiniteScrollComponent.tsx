@@ -11,7 +11,8 @@ interface IInfiniteScrollComponentProps {
 const InfiniteScrollComponent: React.FC<IInfiniteScrollComponentProps> = ({
   roverName,
 }) => {
-  const { photos, hasMore, onFilterPhotos } = useInfiniteScrollLogic(roverName)
+  const { photos, hasMore, onFilterPhotos, isLoading } =
+    useInfiniteScrollLogic(roverName)
 
   return (
     <InfiniteScroll
@@ -25,7 +26,7 @@ const InfiniteScrollComponent: React.FC<IInfiniteScrollComponentProps> = ({
       }
       style={{ overflow: 'hidden' }}
     >
-      <ImagesList photos={photos} />
+      <ImagesList photos={photos} isLoading={isLoading} />
     </InfiniteScroll>
   )
 }

@@ -12,10 +12,11 @@ import ImageComponent from '../ImageComponent/ImageComponent'
 
 interface IImagesListProps {
   photos: IPhoto[]
+  isLoading?: boolean
 }
 
-const ImagesList: React.FC<IImagesListProps> = ({ photos }) => {
-  if (photos.length === 0) {
+const ImagesList: React.FC<IImagesListProps> = ({ photos, isLoading }) => {
+  if (photos.length === 0 && !isLoading) {
     return (
       <Stack justifyContent="center" alignItems="center">
         <Alert severity="warning">

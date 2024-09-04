@@ -19,18 +19,19 @@ const InfiniteScrollComponent = dynamic<{ roverName: string }>(
 )
 
 export interface IParamsPage {
-  params: { rover: string }
+  params: { rover: string[] }
 }
 
 const Home: React.FC<IParamsPage> = ({ params }) => {
   const setFilter = useSetRecoilState(photosFiltersAtom)
+  const roverName = params.rover?.length ? params.rover[0] : 'curiosity'
 
   useEffect(() => {
-    setFilter((prev) => ({ ...prev, rover: params.rover }))
+    setFilter((prev) => ({ ...prev, rover: roverName }))
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [params])
 
-  return <InfiniteScrollComponent roverName={params.rover} />
+  return <InfiniteScrollComponent roverName={roverName} />
 }
 
 export default Home
