@@ -1,6 +1,6 @@
 import { atom } from 'recoil'
 
-import { IPhoto } from '../services/interfaces'
+import { IPhoto } from '../types/interfaces'
 
 export const photosListAtom = atom<IPhoto[]>({
   key: 'photosListAtom',

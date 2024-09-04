@@ -5,7 +5,7 @@ import { useRecoilValue } from 'recoil'
 import { useGetPhotos } from './useGetPhotos'
 
 import { IGetPhotosParams } from '../services/getPhotos'
-import { IPhoto } from '../services/interfaces'
+import { IPhoto } from '../types/interfaces'
 import { photosFiltersAtom } from '../states/photosFiltersAtom'
 
 interface IInfiniteScrollLogicHook {

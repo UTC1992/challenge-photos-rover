@@ -2,7 +2,7 @@ import axios, { AxiosError } from 'axios'
 
 import { env } from '@/modules/config/env'
 
-import { IGetPhotosResponse } from './interfaces'
+import { IGetPhotosResponse } from '../types/interfaces'
 
 export interface IGetPhotosParams {
   rover: string

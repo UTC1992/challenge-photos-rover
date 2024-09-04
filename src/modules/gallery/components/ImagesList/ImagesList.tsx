@@ -7,7 +7,7 @@ import {
   Typography,
 } from '@mui/material'
 
-import { IPhoto } from '../../services/interfaces'
+import { IPhoto } from '../../types/interfaces'
 import ImageComponent from '../ImageComponent/ImageComponent'
 
 interface IImagesListProps {

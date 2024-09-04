@@ -1,7 +1,7 @@
 import { useMutation } from '@tanstack/react-query'
 
 import { getPhotos, IGetPhotosParams } from '../services/getPhotos'
-import { IPhoto } from '../services/interfaces'
+import { IPhoto } from '../types/interfaces'
 
 interface IGetPhotosHook {
   isSuccess: boolean
