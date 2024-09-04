@@ -1,5 +1,7 @@
 import { useMutation } from '@tanstack/react-query'
 
+import { useControlAlert } from './useControlAlert'
+
 import { addBookmark } from '../services/addBookmark'
 import { IGetPhotosParams } from '../services/getPhotos'
 
@@ -10,7 +12,17 @@ interface IAddBookmarkHook {
 }
 
 export const useAddBookmark = (): IAddBookmarkHook => {
-  const { mutate, data, isPending } = useMutation({ mutationFn: addBookmark })
+  const { onAddAlert } = useControlAlert()
+  const { mutate, data, isPending } = useMutation({
+    mutationFn: addBookmark,
+    onSuccess: () => {
+      onAddAlert({
+        open: true,
+        message: 'Bookmark added',
+        severity: 'success',
+      })
+    },
+  })
 
   const onAddBookmark = (item: IGetPhotosParams): void => {
     mutate(item)

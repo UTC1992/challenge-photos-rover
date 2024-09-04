@@ -1,5 +1,7 @@
 import { useMutation } from '@tanstack/react-query'
 
+import { useControlAlert } from './useControlAlert'
+
 import { deleteBookmark } from '../services/deleteBookmark'
 
 interface IUseDeleteBookmarkHook {
@@ -9,8 +11,16 @@ interface IUseDeleteBookmarkHook {
 }
 
 export const useDeleteBookmark = (): IUseDeleteBookmarkHook => {
+  const { onAddAlert } = useControlAlert()
   const { mutate, isPending, isSuccess } = useMutation({
     mutationFn: deleteBookmark,
+    onSuccess: () => {
+      onAddAlert({
+        open: true,
+        message: 'Bookmark deleted',
+        severity: 'success',
+      })
+    },
   })
 
   const onDeleteBookmark = (id: string): void => {

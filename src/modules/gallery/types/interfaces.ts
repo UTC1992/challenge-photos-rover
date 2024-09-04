@@ -34,3 +34,9 @@ export interface ICameraElement {
 export interface IGetPhotosResponse {
   photos: IPhoto[]
 }
+
+export interface IInfoAlert {
+  open?: boolean
+  message?: string
+  severity?: 'success' | 'error' | 'info' | 'warning'
+}

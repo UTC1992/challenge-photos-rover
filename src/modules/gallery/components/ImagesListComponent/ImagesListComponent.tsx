@@ -15,7 +15,10 @@ interface IImagesListProps {
   isLoading?: boolean
 }
 
-const ImagesList: React.FC<IImagesListProps> = ({ photos, isLoading }) => {
+const ImagesListComponent: React.FC<IImagesListProps> = ({
+  photos,
+  isLoading,
+}) => {
   if (photos.length === 0 && !isLoading) {
     return (
       <Stack justifyContent="center" alignItems="center">
@@ -50,4 +53,4 @@ const ImagesList: React.FC<IImagesListProps> = ({ photos, isLoading }) => {
   )
 }
 
-export default ImagesList
+export default ImagesListComponent

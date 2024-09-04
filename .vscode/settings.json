@@ -19,6 +19,7 @@
     "dayjs",
     "firebaseapp",
     "firestore",
+    "notistack",
     "tanstack"
   ],
 }

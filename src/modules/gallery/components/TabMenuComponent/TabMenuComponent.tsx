@@ -6,10 +6,14 @@ import { ToggleButtonStyled } from './styledComponents'
 
 interface ITabMenuComponentProps {
   onNavigate: (value: string) => void
+  selectedOption?: string
 }
 
-const TabMenuComponent: React.FC<ITabMenuComponentProps> = ({ onNavigate }) => {
-  const [roverName, setRoverName] = useState('curiosity')
+const TabMenuComponent: React.FC<ITabMenuComponentProps> = ({
+  onNavigate,
+  selectedOption,
+}) => {
+  const [roverName, setRoverName] = useState(selectedOption)
   const [, startTransition] = useTransition()
 
   const onChange = (

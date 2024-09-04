@@ -2,7 +2,7 @@ import { CircularProgress, Stack } from '@mui/material'
 import InfiniteScroll from 'react-infinite-scroll-component'
 
 import { useInfiniteScrollLogic } from '../../hooks/useInfiniteScrollLogic'
-import ImagesList from '../ImagesList/ImagesList'
+import ImagesListComponent from '../ImagesListComponent/ImagesListComponent'
 
 interface IInfiniteScrollComponentProps {
   roverName: string
@@ -26,7 +26,7 @@ const InfiniteScrollComponent: React.FC<IInfiniteScrollComponentProps> = ({
       }
       style={{ overflow: 'hidden' }}
     >
-      <ImagesList photos={photos} isLoading={isLoading} />
+      <ImagesListComponent photos={photos} isLoading={isLoading} />
     </InfiniteScroll>
   )
 }
