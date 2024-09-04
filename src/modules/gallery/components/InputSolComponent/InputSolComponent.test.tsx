@@ -9,7 +9,7 @@ describe('InputSolComponent', () => {
     render(<InputSolComponent />)
 
     // Act
-    const input = screen.getByRole('textbox')
+    const input = screen.getByPlaceholderText('Mars Sol')
 
     // Assert
     expect(input).toBeInTheDocument()
@@ -20,11 +20,11 @@ describe('InputSolComponent', () => {
     render(<InputSolComponent />)
 
     // Act
-    const inputInitial = screen.getByRole('textbox')
+    const inputInitial = screen.getByPlaceholderText('Mars Sol')
 
-    fireEvent.change(inputInitial, { target: { value: '1000' } })
+    fireEvent.change(inputInitial, { target: { value: 1000 } })
 
     // Assert
-    expect(inputInitial).toHaveValue('1000')
+    expect(inputInitial).toHaveValue(1000)
   })
 })
