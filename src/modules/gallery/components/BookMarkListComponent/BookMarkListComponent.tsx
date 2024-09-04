@@ -1,12 +1,15 @@
-import { Grid2, Stack, Tooltip } from '@mui/material'
+import { Box, Grid2, Stack, Tooltip } from '@mui/material'
 
 import { useListenBookmarks } from '../../hooks/useListenBookmarks'
 import BookmarkComponent from '../BookmarkComponent/BookmarkComponent'
 import { useDeleteBookmark } from '../../hooks/useDeleteBookmark'
+import { BookmarkContainerStyled } from './styledComponents'
+import { useControlFilter } from '../../hooks/useControlFilter'
 
 const BookMarkListComponent: React.FC = () => {
   const { items } = useListenBookmarks()
   const { onDeleteBookmark } = useDeleteBookmark()
+  const { onSetFilter } = useControlFilter()
 
   return (
     <Grid2 container columns={24}>
@@ -21,11 +24,15 @@ const BookMarkListComponent: React.FC = () => {
           }}
         >
           {items.map(({ id, ...rest }, index) => (
-            <BookmarkComponent
+            <BookmarkContainerStyled
               key={'bookmark-' + id}
-              title={`${index + 1} - ${rest.rover} - ${rest.camera}`}
-              onDelete={() => onDeleteBookmark(id)}
-            />
+              onClick={() => onSetFilter(rest)}
+            >
+              <BookmarkComponent
+                title={`${index + 1} - ${rest.rover} - ${rest.camera}`}
+                onDelete={() => onDeleteBookmark(id)}
+              />
+            </BookmarkContainerStyled>
           ))}
         </Stack>
       </Grid2>
