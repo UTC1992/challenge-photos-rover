@@ -24,11 +24,6 @@ const InfiniteScrollComponent: React.FC<IInfiniteScrollComponentProps> = ({
         </Stack>
       }
       style={{ overflow: 'hidden' }}
-      endMessage={
-        <p style={{ textAlign: 'center' }}>
-          <b>No photos with this filters</b>
-        </p>
-      }
     >
       <ImagesList photos={photos} />
     </InfiniteScroll>

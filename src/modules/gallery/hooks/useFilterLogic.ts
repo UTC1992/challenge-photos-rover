@@ -1,7 +1,9 @@
 import dayjs, { Dayjs } from 'dayjs'
 import { useDeferredValue, useEffect, useState } from 'react'
 
-import { useSetRecoilState } from 'recoil'
+import { useRecoilValue, useSetRecoilState } from 'recoil'
+
+import { useAddBookmark } from './useAddBookmark'
 
 import { ICamera } from '../components/SelectCameraComponent/SelectCameraComponent'
 import { photosFiltersAtom } from '../states/photosFiltersAtom'
@@ -14,6 +16,7 @@ interface IFilterLogicHook {
   onChangeEarthDate: (date: Dayjs) => void
   onChangeMarsSol: (value: number) => void
   onResetFilter: () => void
+  onAddBookmarkHandler: () => void
 }
 
 export const useFilterLogic = (): IFilterLogicHook => {
@@ -22,6 +25,13 @@ export const useFilterLogic = (): IFilterLogicHook => {
   const [cameraValue, setCameraValue] = useState<ICamera>()
   const [earthDate, setEarthDate] = useState<Dayjs | null>(null)
   const setFilters = useSetRecoilState(photosFiltersAtom)
+  const filters = useRecoilValue(photosFiltersAtom)
+
+  const { onAddBookmark } = useAddBookmark()
+
+  const onAddBookmarkHandler = (): void => {
+    onAddBookmark(filters)
+  }
 
   const onChangeCamera = (camera: ICamera): void => {
     setCameraValue(camera)
@@ -44,6 +54,13 @@ export const useFilterLogic = (): IFilterLogicHook => {
     setCameraValue(undefined)
     setEarthDate(null)
     setMarsSol(1)
+    setFilters((prev) => ({
+      ...prev,
+      camera: '',
+      earthDate: '',
+      sol: 1,
+      page: 1,
+    }))
   }
 
   useEffect(() => {
@@ -59,5 +76,6 @@ export const useFilterLogic = (): IFilterLogicHook => {
     onChangeEarthDate,
     onChangeMarsSol,
     onResetFilter,
+    onAddBookmarkHandler,
   }
 }

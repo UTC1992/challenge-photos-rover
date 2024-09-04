@@ -21,6 +21,7 @@ const FilterComponent: React.FC = () => {
     onChangeEarthDate,
     onChangeMarsSol,
     onResetFilter,
+    onAddBookmarkHandler,
   } = useFilterLogic()
 
   return (
@@ -44,7 +45,7 @@ const FilterComponent: React.FC = () => {
         </Grid2>
         <Grid2 size={{ xs: 6, sm: 3 }}>
           <Tooltip title="Add to favorite" placement="top">
-            <IconButton>
+            <IconButton onClick={onAddBookmarkHandler}>
               <BookmarkIcon />
             </IconButton>
           </Tooltip>

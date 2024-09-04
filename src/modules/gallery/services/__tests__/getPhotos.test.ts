@@ -1,5 +1,7 @@
-import axios, { AxiosError } from 'axios'
+import axios from 'axios'
+
 import photos from './fixtures/photos.data.json'
+
 import { getPhotos } from '../getPhotos'
 
 jest.mock('axios')
@@ -12,14 +14,17 @@ const params = {
 }
 
 describe('getPhotos', () => {
+  const mockAxios = axios as jest.Mocked<typeof axios>
+
   beforeEach(() => {
-    axios.get.mockClear()
+    mockAxios.get.mockClear()
   })
 
   it('should return photos', async () => {
     // Arrange
     const resp = { data: photos }
-    axios.get.mockResolvedValueOnce(resp)
+
+    mockAxios.get.mockResolvedValueOnce(resp)
 
     // Act
     const result = await getPhotos(params)
@@ -30,7 +35,7 @@ describe('getPhotos', () => {
 
   it('should return throw error', async () => {
     // Arrange
-    axios.get.mockRejectedValueOnce(new Error('Network Error'))
+    mockAxios.get.mockRejectedValueOnce(new Error('Network Error'))
 
     // Act
     const result = getPhotos(params)

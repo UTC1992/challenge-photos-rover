@@ -49,9 +49,11 @@ export const useInfiniteScrollLogic = (
 
   useEffect(() => {
     onSetInitState()
+
     if (roverName) {
       onFilterPhotos()
     }
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filters, roverName])
 

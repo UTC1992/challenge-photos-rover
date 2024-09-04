@@ -1,8 +1,10 @@
 import {
+  Alert,
   ImageList,
   ImageListItem,
   ImageListItemBar,
   Stack,
+  Typography,
 } from '@mui/material'
 
 import { IPhoto } from '../../services/interfaces'
@@ -13,6 +15,16 @@ interface IImagesListProps {
 }
 
 const ImagesList: React.FC<IImagesListProps> = ({ photos }) => {
+  if (photos.length === 0) {
+    return (
+      <Stack justifyContent="center" alignItems="center">
+        <Alert severity="warning">
+          <Typography variant="h6">There is not data.</Typography>
+        </Alert>
+      </Stack>
+    )
+  }
+
   return (
     <Stack
       flexWrap="wrap"
