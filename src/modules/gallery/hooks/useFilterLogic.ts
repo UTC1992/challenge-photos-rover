@@ -21,7 +21,7 @@ export const useFilterLogic = (): IFilterLogicHook => {
   const [marsSol, setMarsSol] = useState(1)
   const deferredMarsSolQuery = useDeferredValue(marsSol)
   const [cameraValue, setCameraValue] = useState<ICamera>()
-  const [earthDate, setEarthDate] = useState<Dayjs | null>(null)
+  const [earthDate, setEarthDate] = useState<Dayjs | null>(dayjs(new Date()))
 
   // control filter
   const { filter, onSetFilter } = useControlFilter()
@@ -64,7 +64,7 @@ export const useFilterLogic = (): IFilterLogicHook => {
         ? { camera: filter.camera, abbreviation: filter.camera }
         : undefined,
     )
-    setEarthDate(filter.earthDate ? dayjs(filter.earthDate) : null)
+    setEarthDate(filter.earthDate ? dayjs(filter.earthDate) : dayjs(new Date()))
     setMarsSol(Number(filter.sol))
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
