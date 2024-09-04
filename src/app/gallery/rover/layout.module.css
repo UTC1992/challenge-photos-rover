@@ -1,0 +1,40 @@
+.page {
+  display: grid;
+  grid-template-columns: 0.5fr auto 0.5fr;
+  grid-template-rows: auto auto auto 1fr auto;
+  grid-template-areas: 
+    ". header ."
+    ". filter ."
+    "bookmarks bookmarks bookmarks"
+    ". divider ."
+    ". main .";
+  gap: 2rem;
+}
+
+.page__header {
+  grid-area: header;
+  padding: 1rem;
+}
+
+.page__filter {
+  grid-area: filter;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.page__bookmarks {
+  grid-area: bookmarks;
+}
+
+.page__divider {
+  grid-area: divider;
+}
+
+.page__main {
+  grid-area: main;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
