@@ -2,9 +2,11 @@ import { Grid2, Stack, Tooltip } from '@mui/material'
 
 import { useListenBookmarks } from '../../hooks/useListenBookmarks'
 import BookmarkComponent from '../BookmarkComponent/BookmarkComponent'
+import { useDeleteBookmark } from '../../hooks/useDeleteBookmark'
 
 const BookMarkListComponent: React.FC = () => {
   const { items } = useListenBookmarks()
+  const { onDeleteBookmark } = useDeleteBookmark()
 
   return (
     <Grid2 container columns={24}>
@@ -18,12 +20,11 @@ const BookMarkListComponent: React.FC = () => {
             scrollbarWidth: 'none',
           }}
         >
-          {items.map(({ id, ...rest }) => (
+          {items.map(({ id, ...rest }, index) => (
             <BookmarkComponent
               key={'bookmark-' + id}
-              title={`${Object.values(rest).join(', ')}`}
-              // eslint-disable-next-line no-console
-              onDelete={() => console.log('delete')}
+              title={`${index + 1} - ${rest.rover} - ${rest.camera}`}
+              onDelete={() => onDeleteBookmark(id)}
             />
           ))}
         </Stack>

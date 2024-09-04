@@ -19,6 +19,7 @@ const InputSolComponent: React.FC<IInputSolComponentProps> = ({
       placeholder="Mars Sol"
       value={value}
       fullWidth
+      type="number"
       onChange={(e) => {
         if (onChange) {
           onChange(Number(e.target.value))

@@ -4,7 +4,7 @@ import { db } from '@/modules/core/lib/firebase'
 
 import { ECollections } from '../types/enums'
 
-export const addBookmark = async (documentId: string): Promise<void> => {
+export const deleteBookmark = async (documentId: string): Promise<void> => {
   try {
     const docRef = doc(db, ECollections.BOOKMARKS, documentId)
 
