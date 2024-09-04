@@ -26,8 +26,6 @@ const SelectCameraComponent: React.FC<ISelectCameraComponentProps> = ({
     setOpen(!open)
   }
 
-  console.log(cameraValue)
-
   return (
     <>
       <SelectButtonComponent

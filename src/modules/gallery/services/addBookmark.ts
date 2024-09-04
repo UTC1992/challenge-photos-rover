@@ -3,6 +3,7 @@ import { addDoc, collection, DocumentReference } from 'firebase/firestore'
 import { db } from '@/modules/core/lib/firebase'
 
 import { IGetPhotosParams } from './getPhotos'
+
 import { ECollections } from '../types/enums'
 
 type IBookmarkPayload = IGetPhotosParams

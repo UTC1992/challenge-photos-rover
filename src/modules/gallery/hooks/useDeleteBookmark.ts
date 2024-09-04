@@ -1,4 +1,5 @@
 import { useMutation } from '@tanstack/react-query'
+
 import { deleteBookmark } from '../services/deleteBookmark'
 
 interface IUseDeleteBookmarkHook {
@@ -12,7 +13,7 @@ export const useDeleteBookmark = (): IUseDeleteBookmarkHook => {
     mutationFn: deleteBookmark,
   })
 
-  const onDeleteBookmark = (id: string) => {
+  const onDeleteBookmark = (id: string): void => {
     mutate(id)
   }
 

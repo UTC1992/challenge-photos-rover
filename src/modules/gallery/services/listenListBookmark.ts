@@ -7,6 +7,7 @@ import {
 } from 'firebase/firestore'
 
 import { db } from '@/modules/core/lib/firebase'
+
 import { ECollections } from '../types/enums'
 
 export const listenListBookmark = (

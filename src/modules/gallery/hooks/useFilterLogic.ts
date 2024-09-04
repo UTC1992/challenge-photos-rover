@@ -1,13 +1,10 @@
 import dayjs, { Dayjs } from 'dayjs'
 import { useDeferredValue, useEffect, useState } from 'react'
 
-import { useRecoilValue, useSetRecoilState } from 'recoil'
-
 import { useAddBookmark } from './useAddBookmark'
+import { useControlFilter } from './useControlFilter'
 
 import { ICamera } from '../components/SelectCameraComponent/SelectCameraComponent'
-import { photosFiltersAtom } from '../states/photosFiltersAtom'
-import { useControlFilter } from './useControlFilter'
 
 interface IFilterLogicHook {
   marsSol: number

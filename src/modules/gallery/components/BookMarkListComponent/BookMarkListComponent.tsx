@@ -1,14 +1,15 @@
-import { Box, Grid2, Stack, Tab, Tabs, Tooltip } from '@mui/material'
+import { Grid2 } from '@mui/material'
 
-import { useListenBookmarks } from '../../hooks/useListenBookmarks'
-import BookmarkComponent from '../BookmarkComponent/BookmarkComponent'
-import { useDeleteBookmark } from '../../hooks/useDeleteBookmark'
 import {
   BookmarkContainerStyled,
   TabsStyled,
   TabStyled,
 } from './styledComponents'
+
 import { useControlFilter } from '../../hooks/useControlFilter'
+import { useDeleteBookmark } from '../../hooks/useDeleteBookmark'
+import { useListenBookmarks } from '../../hooks/useListenBookmarks'
+import BookmarkComponent from '../BookmarkComponent/BookmarkComponent'
 
 const BookMarkListComponent: React.FC = () => {
   const { items } = useListenBookmarks()
