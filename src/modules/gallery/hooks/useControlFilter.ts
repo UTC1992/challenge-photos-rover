@@ -13,7 +13,7 @@ export const useControlFilter = (): IControlFilterHook => {
   const [filter, setFilter] = useRecoilState(photosFiltersAtom)
 
   const onSetFilter = (filter: IFilterParams): void => {
-    setFilter(filter)
+    setFilter((prev) => ({ ...prev, ...filter }))
   }
 
   return {

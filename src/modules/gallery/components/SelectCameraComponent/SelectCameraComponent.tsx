@@ -5,7 +5,7 @@ import ModalComponent from '../ModalComponent/ModalComponent'
 import SelectButtonComponent from '../SelectButtonComponent/SelectButtonComponent'
 
 export interface ICamera {
-  abbreviation: string
+  abbreviation?: string
   camera: string
 }
 
@@ -25,6 +25,8 @@ const SelectCameraComponent: React.FC<ISelectCameraComponentProps> = ({
   const onChangeOpen = (): void => {
     setOpen(!open)
   }
+
+  console.log(cameraValue)
 
   return (
     <>
