@@ -21,13 +21,14 @@ interface IFilterLogicHook {
 }
 
 export const useFilterLogic = (): IFilterLogicHook => {
-  const { filter, onSetFilter } = useControlFilter()
-
   const [marsSol, setMarsSol] = useState(1)
   const deferredMarsSolQuery = useDeferredValue(marsSol)
   const [cameraValue, setCameraValue] = useState<ICamera>()
   const [earthDate, setEarthDate] = useState<Dayjs | null>(null)
 
+  // control filter
+  const { filter, onSetFilter } = useControlFilter()
+  // add bookmark service
   const { onAddBookmark } = useAddBookmark()
 
   const onAddBookmarkHandler = (): void => {
