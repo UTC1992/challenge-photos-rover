@@ -1,11 +1,12 @@
 import {
   Alert,
   ImageList,
-  ImageListItem,
   ImageListItemBar,
   Stack,
   Typography,
 } from '@mui/material'
+
+import { ImageBoxStyled } from './styledComponents'
 
 import { IPhoto } from '../../types/interfaces'
 import ImageComponent from '../ImageComponent/ImageComponent'
@@ -30,23 +31,17 @@ const ImagesListComponent: React.FC<IImagesListProps> = ({
   }
 
   return (
-    <Stack
-      flexWrap="wrap"
-      justifyContent="center"
-      alignItems="center"
-      columnGap={1}
-      rowGap={1}
-    >
-      <ImageList variant="masonry" cols={3} gap={8}>
+    <Stack justifyContent="center" alignItems="center" columnGap={1} rowGap={1}>
+      <ImageList variant="standard" cols={3} gap={5}>
         {photos.map((item) => (
-          <ImageListItem key={item.img_src}>
+          <ImageBoxStyled key={item.img_src}>
             <ImageComponent description="" url={item.img_src} />
             <ImageListItemBar
               title={item.camera.full_name}
               subtitle={item.rover.name}
               sx={{ borderRadius: '9px' }}
             />
-          </ImageListItem>
+          </ImageBoxStyled>
         ))}
       </ImageList>
     </Stack>
