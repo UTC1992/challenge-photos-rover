@@ -11,7 +11,7 @@ interface IControlFilterHook {
   filter: IFilterParams
 }
 
-export const useControlFilter = (roverName: string): IControlFilterHook => {
+export const useControlFilter = (roverName?: string): IControlFilterHook => {
   const [filter, setFilter] = useRecoilState(photosFiltersAtom)
 
   const onSetFilter = (args: IFilterParams): void => {
@@ -19,7 +19,9 @@ export const useControlFilter = (roverName: string): IControlFilterHook => {
   }
 
   useEffect(() => {
-    onSetFilter({ rover: roverName })
+    if (roverName) {
+      onSetFilter({ rover: roverName })
+    }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [roverName])
