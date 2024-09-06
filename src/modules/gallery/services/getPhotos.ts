@@ -1,3 +1,5 @@
+'use server'
+
 import axios, { AxiosError } from 'axios'
 
 import { env } from '@/modules/config/env'
@@ -25,11 +27,12 @@ export const getPhotos = async ({
     const dateQuery = `${dateSol || ''}&${dateEarth || ''}`
     const cameraQuery = camera ? `camera=${camera}` : ''
 
-    const response = await axios.get(
+    const response = await fetch(
       `${env.BASE_URL}/rovers/${rover}/photos?page=${page}&${dateQuery}&${cameraQuery}&api_key=${env.API_KEY}`,
     )
 
-    return response.data as IGetPhotosResponse
+    const data = await response.json()
+    return data as IGetPhotosResponse
   } catch (error) {
     if (error instanceof AxiosError) {
       if (error.response && error.response.status === 404) {

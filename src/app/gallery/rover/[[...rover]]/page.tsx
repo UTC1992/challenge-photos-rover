@@ -6,6 +6,7 @@ import { useEffect } from 'react'
 import { useSetRecoilState } from 'recoil'
 
 import { photosFiltersAtom } from '@/modules/gallery/states/photosFiltersAtom'
+import { getManifest } from '@/modules/gallery/services/getManifest'
 
 const InfiniteScrollComponent = dynamic<{ roverName: string }>(
   () =>
@@ -30,6 +31,17 @@ const Home: React.FC<IParamsPage> = ({ params }) => {
     setFilter((prev) => ({ ...prev, rover: roverName }))
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [params])
+
+  useEffect(() => {
+    const updateViews = async (): Promise<void> => {
+      const maxSol = await getManifest(roverName)
+
+      console.log(maxSol)
+    }
+
+    updateViews()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   return <InfiniteScrollComponent roverName={roverName} />
 }

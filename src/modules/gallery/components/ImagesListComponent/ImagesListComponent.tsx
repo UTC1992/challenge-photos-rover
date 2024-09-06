@@ -33,8 +33,8 @@ const ImagesListComponent: React.FC<IImagesListProps> = ({
   return (
     <Stack justifyContent="center" alignItems="center" columnGap={1} rowGap={1}>
       <ImageList variant="standard" cols={3} gap={5}>
-        {photos.map((item) => (
-          <ImageBoxStyled key={item.img_src}>
+        {photos.map((item, index) => (
+          <ImageBoxStyled key={`${item.img_src}-${index}`}>
             <ImageComponent description="" url={item.img_src} />
             <ImageListItemBar
               title={item.camera.full_name}

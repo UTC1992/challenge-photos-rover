@@ -2,9 +2,9 @@
 
 import BookmarkIcon from '@mui/icons-material/Bookmark'
 import HighlightOffRoundedIcon from '@mui/icons-material/HighlightOffRounded'
-import { Grid2, IconButton, Tooltip } from '@mui/material'
+import { Grid2, IconButton, TextField, Tooltip } from '@mui/material'
 
-import { StackStyled } from './styledComponent'
+import { AutocompleteStyled, StackStyled } from './styledComponent'
 
 import { camerasList } from '../../constants/camerasList'
 import { useFilterLogic } from '../../hooks/useFilterLogic'
@@ -36,6 +36,15 @@ const FilterComponent: React.FC = () => {
         </Grid2>
         <Grid2 size={{ xs: 6, sm: 3 }}>
           <InputSolComponent value={marsSol} onChange={onChangeMarsSol} />
+          <AutocompleteStyled
+            disablePortal
+            options={Array.from({ length: 4102 }, (_, index) => index + 1)}
+            renderInput={(params) => (
+              <TextField {...params} fullWidth label="Movie" />
+            )}
+            size="small"
+            fullWidth
+          />
         </Grid2>
         <Grid2 size={{ xs: 6, sm: 3 }}>
           <SelectEarthDateComponent

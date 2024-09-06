@@ -1,3 +1,5 @@
+'use client'
+
 import { ToggleButtonGroup } from '@mui/material'
 
 import { useState, useTransition } from 'react'
