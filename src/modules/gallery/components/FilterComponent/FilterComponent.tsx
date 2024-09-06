@@ -3,7 +3,6 @@
 import BookmarkIcon from '@mui/icons-material/Bookmark'
 import HighlightOffRoundedIcon from '@mui/icons-material/HighlightOffRounded'
 import {
-  Grid2,
   IconButton,
   TextField,
   Tooltip,

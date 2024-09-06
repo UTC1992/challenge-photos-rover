@@ -1,6 +1,8 @@
-import { useMutation, useQuery } from '@tanstack/react-query'
+import { useMutation } from '@tanstack/react-query'
+
+import { useEffect } from 'react'
+
 import { getManifest } from '../services/getManifest'
-import { useEffect, useState } from 'react'
 
 interface IManifestDataHook {
   listYears: string[]
@@ -17,6 +19,7 @@ export const useGetManifestData = (roverName: string): IManifestDataHook => {
     if (roverName) {
       mutate(roverName)
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [roverName])
 
   return {

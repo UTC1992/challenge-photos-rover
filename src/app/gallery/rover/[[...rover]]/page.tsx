@@ -3,6 +3,7 @@
 import { Typography } from '@mui/material'
 import dynamic from 'next/dynamic'
 import { useEffect } from 'react'
+
 import { useControlFilter } from '@/modules/gallery/hooks/useControlFilter'
 
 const InfiniteScrollComponent = dynamic<{ roverName: string }>(

@@ -13,6 +13,7 @@ const ImageComponent: React.FC<IImageComponentProps> = ({
   description,
 }) => {
   const [src, setSrc] = useState(url)
+
   return (
     <Image
       quality={75}
@@ -28,7 +29,7 @@ const ImageComponent: React.FC<IImageComponentProps> = ({
       height={350}
       priority
       blurDataURL="/404Image.png"
-      onError={(e) => setSrc('/404Image.png')}
+      onError={() => setSrc('/404Image.png')}
     />
   )
 }

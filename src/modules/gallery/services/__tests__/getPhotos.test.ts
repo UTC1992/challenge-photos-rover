@@ -1,5 +1,3 @@
-import axios from 'axios'
-
 import photos from './fixtures/photos.data.json'
 
 import { getPhotos } from '../getPhotos'
@@ -8,7 +6,7 @@ jest.mock('axios')
 
 const params = {
   rover: 'curiosity',
-  sol: 1000,
+  sol: '1000',
   camera: 'fhaz',
   page: 1,
 }
