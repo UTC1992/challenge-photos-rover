@@ -3,15 +3,11 @@
 import { Divider, Stack } from '@mui/material'
 import { ReactNode } from 'react'
 
-import { useRecoilValue } from 'recoil'
-
 import BookMarkListComponent from '@/modules/gallery/components/BookMarkListComponent/BookMarkListComponent'
 import FilterComponent from '@/modules/gallery/components/FilterComponent/FilterComponent'
 import TabMenuComponent from '@/modules/gallery/components/TabMenuComponent/TabMenuComponent'
 import TitleComponent from '@/modules/gallery/components/TitleComponent/TitleComponent'
 import { useNavigateTo } from '@/modules/gallery/hooks/useNavigateTo'
-
-import { photosFiltersAtom } from '@/modules/gallery/states/photosFiltersAtom'
 
 import styles from './layout.module.css'
 
@@ -21,7 +17,6 @@ interface ILayoutProps {
 
 const GalleryLayout: React.FC<ILayoutProps> = ({ children }) => {
   const { onNavigate } = useNavigateTo()
-  const filter = useRecoilValue(photosFiltersAtom)
 
   return (
     <main className={styles.page}>
@@ -38,13 +33,10 @@ const GalleryLayout: React.FC<ILayoutProps> = ({ children }) => {
         <BookMarkListComponent />
       </div>
 
-      <div className={styles.page__divider}>
+      <div className={styles.page__menu}>
         <Divider />
         <Stack width="100%" alignItems="center">
-          <TabMenuComponent
-            onNavigate={onNavigate}
-            selectedOption={filter.rover}
-          />
+          <TabMenuComponent onNavigate={onNavigate} />
         </Stack>
       </div>
       <div className={styles.page__main}>{children}</div>

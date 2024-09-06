@@ -4,29 +4,34 @@ import { useDeferredValue, useEffect, useState } from 'react'
 import { useAddBookmark } from './useAddBookmark'
 import { useControlFilter } from './useControlFilter'
 
+import { useGetManifestData } from './useGetManifestData'
+
 import { ICamera } from '../components/SelectCameraComponent/SelectCameraComponent'
 
 interface IFilterLogicHook {
-  marsSol: number
+  marsSol: string
   cameraValue: ICamera | undefined
   earthDate: Dayjs | null
   onChangeCamera: (camera: ICamera) => void
   onChangeEarthDate: (date: Dayjs) => void
-  onChangeMarsSol: (value: number) => void
+  onChangeMarsSol: (value: string) => void
   onResetFilter: () => void
   onAddBookmarkHandler: () => void
+  listYears: string[] | undefined
 }
 
 export const useFilterLogic = (): IFilterLogicHook => {
-  const [marsSol, setMarsSol] = useState(1)
+  const [marsSol, setMarsSol] = useState('1')
   const deferredMarsSolQuery = useDeferredValue(marsSol)
   const [cameraValue, setCameraValue] = useState<ICamera>()
-  const [earthDate, setEarthDate] = useState<Dayjs | null>(dayjs(new Date()))
+  const [earthDate, setEarthDate] = useState<Dayjs | null>(null)
 
   // control filter
   const { filter, onSetFilter } = useControlFilter()
   // add bookmark service
   const { onAddBookmark } = useAddBookmark()
+  // get list years
+  const { listYears, lastDate } = useGetManifestData(filter.rover)
 
   const onAddBookmarkHandler = (): void => {
     onAddBookmark(filter)
@@ -42,15 +47,15 @@ export const useFilterLogic = (): IFilterLogicHook => {
     onSetFilter({ ...filter, earthDate: dayjs(date).format('YYYY-MM-DD') })
   }
 
-  const onChangeMarsSol = (value: number): void => {
+  const onChangeMarsSol = (value: string): void => {
     setMarsSol(value)
   }
 
   const onResetFilter = (): void => {
     setCameraValue(undefined)
     setEarthDate(null)
-    setMarsSol(1)
-    onSetFilter({ ...filter, camera: '', earthDate: '', sol: 1, page: 1 })
+    setMarsSol('1')
+    onSetFilter({ ...filter, camera: '', earthDate: '', sol: '1', page: 1 })
   }
 
   useEffect(() => {
@@ -64,11 +69,17 @@ export const useFilterLogic = (): IFilterLogicHook => {
         ? { camera: filter.camera, abbreviation: filter.camera }
         : undefined,
     )
-    setEarthDate(filter.earthDate ? dayjs(filter.earthDate) : dayjs(new Date()))
-    setMarsSol(Number(filter.sol))
+    setEarthDate(filter.earthDate ? dayjs(filter.earthDate) : dayjs(lastDate))
+    setMarsSol(`${filter.sol}`)
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filter])
+
+  useEffect(() => {
+    setEarthDate(dayjs(lastDate))
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [lastDate])
 
   return {
     marsSol,
@@ -79,5 +90,6 @@ export const useFilterLogic = (): IFilterLogicHook => {
     onChangeMarsSol,
     onResetFilter,
     onAddBookmarkHandler,
+    listYears,
   }
 }

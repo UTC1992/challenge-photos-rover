@@ -1,8 +1,7 @@
 'use client'
 
 import Image from 'next/image'
-
-import { ImageBoxStyled } from './styledComponents'
+import { useState } from 'react'
 
 interface IImageComponentProps {
   url: string
@@ -13,24 +12,25 @@ const ImageComponent: React.FC<IImageComponentProps> = ({
   url,
   description,
 }) => {
+  const [src, setSrc] = useState(url)
+
   return (
-    <ImageBoxStyled>
-      <Image
-        quality={75}
-        src={url}
-        alt={description}
-        style={{
-          objectFit: 'contain',
-          position: 'relative',
-          width: '100%',
-          height: 'auto',
-          borderRadius: '9px',
-        }}
-        width={300}
-        height={350}
-        priority
-      />
-    </ImageBoxStyled>
+    <Image
+      quality={75}
+      src={src}
+      alt={description}
+      style={{
+        objectFit: 'cover',
+        width: '100%',
+        height: 'auto',
+        borderRadius: '9px',
+      }}
+      width={300}
+      height={350}
+      priority
+      blurDataURL="/404Image.png"
+      onError={() => setSrc('/404Image.png')}
+    />
   )
 }
 

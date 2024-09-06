@@ -3,9 +3,8 @@
 import { Typography } from '@mui/material'
 import dynamic from 'next/dynamic'
 import { useEffect } from 'react'
-import { useSetRecoilState } from 'recoil'
 
-import { photosFiltersAtom } from '@/modules/gallery/states/photosFiltersAtom'
+import { useControlFilter } from '@/modules/gallery/hooks/useControlFilter'
 
 const InfiniteScrollComponent = dynamic<{ roverName: string }>(
   () =>
@@ -23,11 +22,12 @@ export interface IParamsPage {
 }
 
 const Home: React.FC<IParamsPage> = ({ params }) => {
-  const setFilter = useSetRecoilState(photosFiltersAtom)
   const roverName = params.rover?.length ? params.rover[0] : 'curiosity'
+  const { onSetFilter } = useControlFilter()
 
   useEffect(() => {
-    setFilter((prev) => ({ ...prev, rover: roverName }))
+    onSetFilter({ rover: roverName })
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [params])
 

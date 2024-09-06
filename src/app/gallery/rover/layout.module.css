@@ -6,7 +6,7 @@
     ". header ."
     ". filter ."
     "bookmarks bookmarks bookmarks"
-    ". divider ."
+    ". menu ."
     ". main .";
   gap: 2rem;
 }
@@ -27,8 +27,8 @@
   grid-area: bookmarks;
 }
 
-.page__divider {
-  grid-area: divider;
+.page__menu {
+  grid-area: menu;
 }
 
 .page__main {

@@ -1,19 +1,22 @@
+'use client'
+
 import { ToggleButtonGroup } from '@mui/material'
 
 import { useState, useTransition } from 'react'
 
+import { useRecoilValue } from 'recoil'
+
 import { ToggleButtonStyled } from './styledComponents'
+
+import { photosFiltersAtom } from '../../states/photosFiltersAtom'
 
 interface ITabMenuComponentProps {
   onNavigate: (value: string) => void
-  selectedOption?: string
 }
 
-const TabMenuComponent: React.FC<ITabMenuComponentProps> = ({
-  onNavigate,
-  selectedOption,
-}) => {
-  const [roverName, setRoverName] = useState(selectedOption)
+const TabMenuComponent: React.FC<ITabMenuComponentProps> = ({ onNavigate }) => {
+  const filter = useRecoilValue(photosFiltersAtom)
+  const [roverName, setRoverName] = useState(filter.rover)
   const [, startTransition] = useTransition()
 
   const onChange = (
@@ -32,6 +35,7 @@ const TabMenuComponent: React.FC<ITabMenuComponentProps> = ({
     >
       <ToggleButtonStyled
         value="curiosity"
+        selected={filter.rover === 'curiosity'}
         onClick={() => {
           startTransition(() => {
             onNavigate('curiosity')
@@ -42,6 +46,7 @@ const TabMenuComponent: React.FC<ITabMenuComponentProps> = ({
       </ToggleButtonStyled>
       <ToggleButtonStyled
         value="opportunity"
+        selected={filter.rover === 'opportunity'}
         onClick={() =>
           startTransition(() => {
             onNavigate('opportunity')
@@ -52,6 +57,7 @@ const TabMenuComponent: React.FC<ITabMenuComponentProps> = ({
       </ToggleButtonStyled>
       <ToggleButtonStyled
         value="spirit"
+        selected={filter.rover === 'spirit'}
         onClick={() =>
           startTransition(() => {
             onNavigate('spirit')
