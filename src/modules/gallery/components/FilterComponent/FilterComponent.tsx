@@ -53,6 +53,15 @@ const FilterComponent: React.FC = () => {
             onChangeMarsSol(value)
           }
         }}
+        onInputChange={(_, value, reason) => {
+          if (reason === 'clear') {
+            onChangeMarsSol('')
+          }
+
+          if (value === '0') {
+            onChangeMarsSol('')
+          }
+        }}
         size="small"
       />
       <SelectEarthDateComponent
