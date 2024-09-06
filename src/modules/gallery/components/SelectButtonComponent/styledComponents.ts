@@ -5,4 +5,5 @@ export const ButtonStyled = styled(Button)(() => ({
     borderRadius: '10px',
   },
   textTransform: 'capitalize',
+  minWidth: '10rem',
 }))

@@ -1,6 +1,7 @@
 'use client'
 
 import Image from 'next/image'
+import { useState } from 'react'
 
 interface IImageComponentProps {
   url: string
@@ -11,10 +12,11 @@ const ImageComponent: React.FC<IImageComponentProps> = ({
   url,
   description,
 }) => {
+  const [src, setSrc] = useState(url)
   return (
     <Image
       quality={75}
-      src={url}
+      src={src}
       alt={description}
       style={{
         objectFit: 'cover',
@@ -25,6 +27,8 @@ const ImageComponent: React.FC<IImageComponentProps> = ({
       width={300}
       height={350}
       priority
+      blurDataURL="/404Image.png"
+      onError={(e) => setSrc('/404Image.png')}
     />
   )
 }

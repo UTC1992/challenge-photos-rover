@@ -14,7 +14,7 @@ const SelectButtonComponent: React.FC<ISelectButtonComponentProps> = ({
   onShow,
 }) => {
   return (
-    <ButtonStyled fullWidth variant="contained" onClick={onShow}>
+    <ButtonStyled variant="contained" onClick={onShow}>
       {title}
       <ExpandMoreIcon />
     </ButtonStyled>

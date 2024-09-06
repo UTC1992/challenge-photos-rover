@@ -5,6 +5,7 @@ import { useAddBookmark } from './useAddBookmark'
 import { useControlFilter } from './useControlFilter'
 
 import { ICamera } from '../components/SelectCameraComponent/SelectCameraComponent'
+import { useGetManifestData } from './useGetManifestData'
 
 interface IFilterLogicHook {
   marsSol: number
@@ -15,18 +16,21 @@ interface IFilterLogicHook {
   onChangeMarsSol: (value: number) => void
   onResetFilter: () => void
   onAddBookmarkHandler: () => void
+  listYears: string[] | undefined
 }
 
 export const useFilterLogic = (): IFilterLogicHook => {
   const [marsSol, setMarsSol] = useState(1)
   const deferredMarsSolQuery = useDeferredValue(marsSol)
   const [cameraValue, setCameraValue] = useState<ICamera>()
-  const [earthDate, setEarthDate] = useState<Dayjs | null>(dayjs(new Date()))
+  const [earthDate, setEarthDate] = useState<Dayjs | null>(null)
 
   // control filter
   const { filter, onSetFilter } = useControlFilter()
   // add bookmark service
   const { onAddBookmark } = useAddBookmark()
+  // get list years
+  const { listYears, lastDate } = useGetManifestData(filter.rover)
 
   const onAddBookmarkHandler = (): void => {
     onAddBookmark(filter)
@@ -38,6 +42,7 @@ export const useFilterLogic = (): IFilterLogicHook => {
   }
 
   const onChangeEarthDate = (date: Dayjs): void => {
+    console.log(date)
     setEarthDate(date)
     onSetFilter({ ...filter, earthDate: dayjs(date).format('YYYY-MM-DD') })
   }
@@ -64,11 +69,17 @@ export const useFilterLogic = (): IFilterLogicHook => {
         ? { camera: filter.camera, abbreviation: filter.camera }
         : undefined,
     )
-    setEarthDate(filter.earthDate ? dayjs(filter.earthDate) : dayjs(new Date()))
+    setEarthDate(filter.earthDate ? dayjs(filter.earthDate) : dayjs(lastDate))
     setMarsSol(Number(filter.sol))
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filter])
+
+  useEffect(() => {
+    setEarthDate(dayjs(lastDate))
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [lastDate])
 
   return {
     marsSol,
@@ -79,5 +90,6 @@ export const useFilterLogic = (): IFilterLogicHook => {
     onChangeMarsSol,
     onResetFilter,
     onAddBookmarkHandler,
+    listYears,
   }
 }

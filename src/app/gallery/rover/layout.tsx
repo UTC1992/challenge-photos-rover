@@ -38,7 +38,7 @@ const GalleryLayout: React.FC<ILayoutProps> = ({ children }) => {
         <BookMarkListComponent />
       </div>
 
-      <div className={styles.page__divider}>
+      <div className={styles.page__menu}>
         <Divider />
         <Stack width="100%" alignItems="center">
           <TabMenuComponent

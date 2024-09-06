@@ -25,15 +25,6 @@ const InputSolComponent: React.FC<IInputSolComponentProps> = ({
           onChange(Number(e.target.value))
         }
       }}
-      slotProps={{
-        input: {
-          endAdornment: (
-            <InputAdornment position="start">
-              <WbSunnyIcon />
-            </InputAdornment>
-          ),
-        },
-      }}
     />
   )
 }
