@@ -2,7 +2,6 @@
 
 import { Typography } from '@mui/material'
 import dynamic from 'next/dynamic'
-import { useEffect } from 'react'
 
 import { useControlFilter } from '@/modules/gallery/hooks/useControlFilter'
 
@@ -23,13 +22,8 @@ export interface IParamsPage {
 
 const Home: React.FC<IParamsPage> = ({ params }) => {
   const roverName = params.rover?.length ? params.rover[0] : 'curiosity'
-  const { onSetFilter } = useControlFilter()
 
-  useEffect(() => {
-    onSetFilter({ rover: roverName })
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [params])
+  useControlFilter(roverName)
 
   return <InfiniteScrollComponent roverName={roverName} />
 }
