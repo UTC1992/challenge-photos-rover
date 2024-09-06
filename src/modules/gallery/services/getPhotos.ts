@@ -8,7 +8,7 @@ import { IGetPhotosResponse } from '../types/interfaces'
 
 export interface IGetPhotosParams {
   rover: string
-  sol?: number
+  sol?: string
   earthDate?: string
   camera?: string
   page?: number

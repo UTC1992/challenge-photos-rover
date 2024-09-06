@@ -17,6 +17,7 @@ export const useControlFilter = (): IControlFilterHook => {
     setFilter((prev) => ({ ...prev, ...args }))
   }
 
+  console.log(filter)
   return {
     onSetFilter,
     filter,

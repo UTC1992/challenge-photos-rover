@@ -48,9 +48,11 @@ const FilterComponent: React.FC = () => {
         disablePortal
         options={listYears || []}
         renderInput={(params) => <TextField {...params} size="small" />}
-        value={marsSol}
-        onInputChange={(_, value) => {
-          onChangeMarsSol(parseInt(value, 10))
+        value={marsSol.toString()}
+        onChange={(e, value) => {
+          if (typeof value === 'string') {
+            onChangeMarsSol(value)
+          }
         }}
         size="small"
       />

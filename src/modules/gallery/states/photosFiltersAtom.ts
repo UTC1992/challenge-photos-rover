@@ -7,7 +7,7 @@ export const photosFiltersAtom = atom<IGetPhotosParams>({
   default: {
     camera: '',
     earthDate: '',
-    sol: 1,
+    sol: '1',
     page: 1,
     rover: '',
   },

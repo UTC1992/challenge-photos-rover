@@ -8,19 +8,19 @@ import { ICamera } from '../components/SelectCameraComponent/SelectCameraCompone
 import { useGetManifestData } from './useGetManifestData'
 
 interface IFilterLogicHook {
-  marsSol: number
+  marsSol: string
   cameraValue: ICamera | undefined
   earthDate: Dayjs | null
   onChangeCamera: (camera: ICamera) => void
   onChangeEarthDate: (date: Dayjs) => void
-  onChangeMarsSol: (value: number) => void
+  onChangeMarsSol: (value: string) => void
   onResetFilter: () => void
   onAddBookmarkHandler: () => void
   listYears: string[] | undefined
 }
 
 export const useFilterLogic = (): IFilterLogicHook => {
-  const [marsSol, setMarsSol] = useState(1)
+  const [marsSol, setMarsSol] = useState('1')
   const deferredMarsSolQuery = useDeferredValue(marsSol)
   const [cameraValue, setCameraValue] = useState<ICamera>()
   const [earthDate, setEarthDate] = useState<Dayjs | null>(null)
@@ -47,15 +47,15 @@ export const useFilterLogic = (): IFilterLogicHook => {
     onSetFilter({ ...filter, earthDate: dayjs(date).format('YYYY-MM-DD') })
   }
 
-  const onChangeMarsSol = (value: number): void => {
+  const onChangeMarsSol = (value: string): void => {
     setMarsSol(value)
   }
 
   const onResetFilter = (): void => {
     setCameraValue(undefined)
     setEarthDate(null)
-    setMarsSol(1)
-    onSetFilter({ ...filter, camera: '', earthDate: '', sol: 1, page: 1 })
+    setMarsSol('1')
+    onSetFilter({ ...filter, camera: '', earthDate: '', sol: '1', page: 1 })
   }
 
   useEffect(() => {
@@ -70,7 +70,7 @@ export const useFilterLogic = (): IFilterLogicHook => {
         : undefined,
     )
     setEarthDate(filter.earthDate ? dayjs(filter.earthDate) : dayjs(lastDate))
-    setMarsSol(Number(filter.sol))
+    setMarsSol(`${filter.sol}`)
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filter])

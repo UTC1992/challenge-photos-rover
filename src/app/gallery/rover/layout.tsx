@@ -41,10 +41,7 @@ const GalleryLayout: React.FC<ILayoutProps> = ({ children }) => {
       <div className={styles.page__menu}>
         <Divider />
         <Stack width="100%" alignItems="center">
-          <TabMenuComponent
-            onNavigate={onNavigate}
-            selectedOption={filter.rover}
-          />
+          <TabMenuComponent onNavigate={onNavigate} />
         </Stack>
       </div>
       <div className={styles.page__main}>{children}</div>
