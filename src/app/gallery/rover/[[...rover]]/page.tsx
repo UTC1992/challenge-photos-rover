@@ -23,6 +23,7 @@ export interface IParamsPage {
 const Home: React.FC<IParamsPage> = ({ params }) => {
   const roverName = params.rover?.length ? params.rover[0] : 'curiosity'
 
+  // set rover name
   useControlFilter(roverName)
 
   return <InfiniteScrollComponent roverName={roverName} />
