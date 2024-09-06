@@ -1,7 +1,5 @@
 'use server'
 
-import axios, { AxiosError } from 'axios'
-
 import { env } from '@/modules/config/env'
 
 import { IGetPhotosResponse } from '../types/interfaces'
@@ -32,13 +30,9 @@ export const getPhotos = async ({
     )
 
     const data = await response.json()
+
     return data as IGetPhotosResponse
   } catch (error) {
-    if (error instanceof AxiosError) {
-      if (error.response && error.response.status === 404) {
-        throw new Error('Not found')
-      }
-    }
     throw new Error(`${error}`)
   }
 }

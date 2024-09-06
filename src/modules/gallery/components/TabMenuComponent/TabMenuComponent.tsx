@@ -4,8 +4,10 @@ import { ToggleButtonGroup } from '@mui/material'
 
 import { useState, useTransition } from 'react'
 
-import { ToggleButtonStyled } from './styledComponents'
 import { useRecoilValue } from 'recoil'
+
+import { ToggleButtonStyled } from './styledComponents'
+
 import { photosFiltersAtom } from '../../states/photosFiltersAtom'
 
 interface ITabMenuComponentProps {

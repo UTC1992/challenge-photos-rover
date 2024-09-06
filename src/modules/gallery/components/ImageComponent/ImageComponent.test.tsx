@@ -14,6 +14,6 @@ describe('ImageComponent', () => {
 
     // Assert
     expect(image).toBeInTheDocument()
-    expect(imageSrc).toBe('/next.svg')
+    expect(imageSrc).toBe('http://localhost/next.svg')
   })
 })

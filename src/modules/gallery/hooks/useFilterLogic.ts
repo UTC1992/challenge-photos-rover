@@ -4,8 +4,9 @@ import { useDeferredValue, useEffect, useState } from 'react'
 import { useAddBookmark } from './useAddBookmark'
 import { useControlFilter } from './useControlFilter'
 
-import { ICamera } from '../components/SelectCameraComponent/SelectCameraComponent'
 import { useGetManifestData } from './useGetManifestData'
+
+import { ICamera } from '../components/SelectCameraComponent/SelectCameraComponent'
 
 interface IFilterLogicHook {
   marsSol: string
@@ -42,7 +43,6 @@ export const useFilterLogic = (): IFilterLogicHook => {
   }
 
   const onChangeEarthDate = (date: Dayjs): void => {
-    console.log(date)
     setEarthDate(date)
     onSetFilter({ ...filter, earthDate: dayjs(date).format('YYYY-MM-DD') })
   }

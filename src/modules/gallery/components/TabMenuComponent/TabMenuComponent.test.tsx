@@ -1,12 +1,18 @@
 import '@testing-library/jest-dom'
 import { fireEvent, render, screen } from '@testing-library/react'
 
+import { RecoilRoot } from 'recoil'
+
 import TabMenuComponent from './TabMenuComponent'
 
 describe('TabMenuComponent', () => {
   it('should render 3 buttons', () => {
     // Arrange
-    render(<TabMenuComponent onNavigate={() => ({})} />)
+    render(
+      <RecoilRoot>
+        <TabMenuComponent onNavigate={() => ({})} />
+      </RecoilRoot>,
+    )
 
     // Act
     const buttons = screen.queryAllByRole('button')
@@ -19,7 +25,11 @@ describe('TabMenuComponent', () => {
     // Arrange
     const onNavigate = jest.fn()
 
-    render(<TabMenuComponent onNavigate={onNavigate} />)
+    render(
+      <RecoilRoot>
+        <TabMenuComponent onNavigate={onNavigate} />
+      </RecoilRoot>,
+    )
 
     // Act
     const buttons = screen.queryAllByRole('button')
