@@ -3,7 +3,9 @@
 import BookmarkIcon from '@mui/icons-material/Bookmark'
 import HighlightOffRoundedIcon from '@mui/icons-material/HighlightOffRounded'
 import {
+  Box,
   IconButton,
+  InputLabel,
   TextField,
   Tooltip,
   useMediaQuery,
@@ -38,36 +40,45 @@ const FilterComponent: React.FC = () => {
       direction={'row'}
       justifyContent={isMobile ? 'flex-start' : 'center'}
     >
-      <SelectCameraComponent
-        options={camerasList}
-        cameraValue={cameraValue}
-        onChangeCamera={onChangeCamera}
-      />
-      <AutocompleteStyled
-        disablePortal
-        options={listYears || []}
-        renderInput={(params) => <TextField {...params} size="small" />}
-        value={marsSol.toString()}
-        onChange={(e, value) => {
-          if (typeof value === 'string') {
-            onChangeMarsSol(value)
-          }
-        }}
-        onInputChange={(_, value, reason) => {
-          if (reason === 'clear') {
-            onChangeMarsSol('')
-          }
+      <Box>
+        <InputLabel>Camera</InputLabel>
+        <SelectCameraComponent
+          options={camerasList}
+          cameraValue={cameraValue}
+          onChangeCamera={onChangeCamera}
+        />
+      </Box>
+      <Box>
+        <InputLabel>Mars Sol</InputLabel>
+        <AutocompleteStyled
+          disablePortal
+          options={listYears || []}
+          renderInput={(params) => <TextField {...params} size="small" />}
+          value={marsSol.toString()}
+          onChange={(e, value) => {
+            if (typeof value === 'string') {
+              onChangeMarsSol(value)
+            }
+          }}
+          onInputChange={(_, value, reason) => {
+            if (reason === 'clear') {
+              onChangeMarsSol('')
+            }
 
-          if (value === '0') {
-            onChangeMarsSol('')
-          }
-        }}
-        size="small"
-      />
-      <SelectEarthDateComponent
-        earthDate={earthDate}
-        onChangeEarthDate={onChangeEarthDate}
-      />
+            if (value === '0') {
+              onChangeMarsSol('')
+            }
+          }}
+          size="small"
+        />
+      </Box>
+      <Box>
+        <InputLabel>Earth Date</InputLabel>
+        <SelectEarthDateComponent
+          earthDate={earthDate}
+          onChangeEarthDate={onChangeEarthDate}
+        />
+      </Box>
       <Tooltip title="Add to favorite" placement="top">
         <IconButton onClick={onAddBookmarkHandler}>
           <BookmarkIcon />
